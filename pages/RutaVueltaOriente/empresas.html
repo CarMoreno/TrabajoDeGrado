@@ -1,0 +1,85 @@
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <ng-include src="'pages/header.html'"></ng-include>  
+  <!-- Left side column. contains the logo and sidebar -->
+  <ng-include src="'pages/aside.html'"></ng-include>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Empresas
+        <small>Ruta Vuelta a Oriente</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#/"><i class="fa fa-home"></i>Inicio</a></li>
+        <li><a href="#/rutaOriente/">Ruta Vuelta a Oriente</a></li>
+        <li class="active">Empresas</li>
+      </ol>
+    </section>
+
+    <!-- ===================CONTENIDO ===================-->
+    <section class="content">
+      <form name="form" novalidate>
+        <div class="form-search input-group input-group-lg" 
+             ng-class="{ 'has-error' : form.busqueda.$invalid && !form.busqueda.$pristine }">
+            <input type="text" name="busqueda" class="form-control input-lg" placeholder="Empieza a escribir..." 
+                   ng-model="search" required>
+        </div>
+      </form>
+      <!--Cartas-->
+      <div class="row"  >
+        <div class="col-md-4 col-sm-3" dir-paginate="cards in datos | filter:search | itemsPerPage:3">
+          <div class='report-module'>
+            <div class='thumbnail' ng-repeat="empresa in cards" 
+                 ng-if="empresa.pred.value.search('image') != -1">
+                <img src={{empresa.obj.value}}>
+            </div>
+            <div class='post-content'>
+              <div class='category' ng-repeat="empresa in cards"
+                   ng-if="empresa.pred.value.search('name') != -1">
+                {{empresa.obj.value}}
+              </div>
+              <p class='description' align="justify" ng-repeat="empresa in cards"
+                 ng-if="empresa.pred.value.search('description') != -1">
+                {{empresa.obj.value}}
+              </p>
+              <p class='description' ng-repeat="empresa in cards" 
+                 ng-if="empresa.pred.value.search('email') != -1 && empresa.obj.value.search('No disponible') == -1">
+                Email: {{empresa.obj.value}}
+              </p>
+              <p class='description' ng-repeat="empresa in cards" 
+                 ng-if="empresa.pred.value.search('tel') != -1 && empresa.obj.value.search('No disponible') == -1">
+                Tel(s): {{empresa.obj.value}}
+              </p>
+              <div class='post-meta'>
+                <span class='timestamp' ng-repeat="empresa in cards"
+                      ng-if="empresa.pred.value.search('homepage') != -1 && empresa.obj.value.search('No disponible') == -1">
+                  <a target="_blank" class="btn btn-link" href={{empresa.obj.value}}>Página Web</a>
+                </span>
+                <span class='timestamp' ng-repeat="empresa in cards"
+                      ng-if="empresa.pred.value.search('adr') != -1">
+                  <a target="_blank" class="btn btn-link" href={{empresa.obj.value}}><i class="fa fa-street-view fa-2x"></i></a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="col-md-7 col-md-offset-4">
+            <dir-pagination-controls
+               max-size="3"
+               direction-links="true">
+            </dir-pagination-controls>
+          </div>
+      </div>
+      <!--./Cartas-->
+    </section>
+    <!--=================== /.CONTENIDO ============= -->
+
+
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- Main Footer -->
+  <ng-include src="'pages/footer.html'"></ng-include>
+</div><!-- ./wrapper -->

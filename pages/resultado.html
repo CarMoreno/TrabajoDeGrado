@@ -1,0 +1,100 @@
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <ng-include src="'pages/header.html'"></ng-include>  
+  <!-- Left side column. contains the logo and sidebar -->
+  <ng-include src="'pages/aside.html'"></ng-include>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Resultados
+        <small>Consulta</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#/"><i class="fa fa-home"></i>Inicio</a></li>
+        <li class="active">Resultado</li>
+      </ol>
+    </section>
+
+    <!-- ===================CONTENIDO ===================-->
+    <section class="content">
+      <div class="alert alert-success" ng-if="datos.length == 0">
+      <br><br><br><br><br>
+        <h2 class="alert-heading">
+          <i class="fa fa-frown-o"></i> Oops! No hay resultados
+        </h2>
+        <p align="justify">
+          Un par de cosas que pueden ayudar:
+          <ol>
+            <li>Espere un poco y realice la consulta nuevamente</li>
+            <li>Especifique otro criterio de búsqueda</li>
+            <li>¿Nos estamos perdiendo algo en nuestros resultados?. Use <a href="#">SPARQL Endpoint</a> para añadir la información faltante</li>
+          </ol>
+        </p>
+        <p class="m-b-0">Gracias por usar nuestra plataforma</p>
+        <br><br><br><br><br><br>
+      </div>
+      
+      <!--Cartas-->
+      <div class="row"  >
+        <div class="col-md-4 col-sm-3" dir-paginate="cards in datos | itemsPerPage:3">
+          <div class='report-module'>
+            <div class='thumbnail' ng-repeat="resultado in cards"
+                                   ng-if="resultado.obj.value.search('imgur') != -1">
+                <img src={{resultado.obj.value}}>
+            </div>
+            <div class='post-content'>
+              <div class='category' ng-repeat="resultado in cards"
+                                    ng-if="resultado.pred.value.search('commonName') != -1 || resultado.pred.value.search('name') != -1 || resultado.pred.value.search('label') != -1">
+                {{resultado.obj.value}}
+              </div>
+              <p class="lead" ng-repeat="resultado in cards" 
+                    ng-if="resultado.pred.value.search('scientificName') != -1">
+                {{resultado.obj.value}}
+              </p>
+              <p class='description' align="justify" ng-repeat="resultado in cards"
+                                     ng-if="resultado.pred.value.search('shortDescription') != -1 || resultado.pred.value.search('comment') != -1 || resultado.pred.value.search('description') != -1">
+                {{resultado.obj.value}}
+              </p>
+              <p class='description' ng-repeat="resultado in cards" 
+                 ng-if="resultado.pred.value.search('email') != -1 && resultado.obj.value.search('No disponible') == -1">
+                Email: {{resultado.obj.value}}
+              </p>
+              <p class='description' ng-repeat="resultado in cards" 
+                 ng-if="resultado.pred.value.search('tel') != -1 && resultado.obj.value.search('No disponible') == -1">
+                Tel(s): {{resultado.obj.value}}
+              </p>
+              <div class='post-meta'>
+                <span class='timestamp' ng-repeat="resultado in cards"
+                      ng-if="resultado.pred.value.search('homepage') != -1 && resultado.obj.value.search('No disponible') == -1">
+                  <a class="btn btn-link" href={{resultado.obj.value}}>Página Web</a>
+                </span>
+                <span class='timestamp' ng-repeat="resultado in cards"
+                      ng-if="resultado.pred.value.search('adr') != -1">
+                  <a class="btn btn-link" href={{resultado.obj.value}}><i class="fa fa-street-view fa-2x"></i></a>
+                </span>
+                <span class='timestamp' ng-repeat="resultado in cards"
+                      ng-if="resultado.obj.value.search('.mp4') != -1 resultado.obj.value.search('No disponible') == -1">
+                  <a class="btn btn-link" href={{resultado.obj.value}}>Video</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7 col-md-offset-4">
+          <dir-pagination-controls
+             max-size="3"
+             direction-links="true">
+          </dir-pagination-controls>
+        </div>
+      </div>
+      <!--./Cartas-->
+    </section>
+    <!--=================== /.CONTENIDO ============= -->
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- Main Footer -->
+  <ng-include src="'pages/footer.html'"></ng-include>
+</div><!-- ./wrapper -->
