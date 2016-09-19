@@ -1,0 +1,41 @@
+<div class="modal-dialog modal-success" >
+    <div class="modal-content">
+        <div class="modal-header" ng-repeat="array in dato" id="titulo-modal">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click = "cancel()">
+              <span aria-hidden="true">&times;</span></button>
+            <h3 class="modal-title" ng-if="elem.pred.value.search(attr.modalTitle) != -1" ng-repeat="elem in array">{{elem.obj.value}}</h3>
+            <span ng-if="elem.pred.value.search(attr.modalSpam) != -1" ng-repeat="elem in array"><i>{{elem.obj.value}}</i></span>
+        </div>
+        <div id="cuerpo-modal">
+            <div class="modal-body"  ng-repeat="array in dato">
+                <div class="row">
+                    <div class="col-md-6">
+                        <figure>
+                            <img src={{elem.obj.value}} ng-if="elem.pred.value.search('depiction') != -1 && elem.obj.value.search('imgur') != -1" ng-repeat="elem in array" class="img-responsive img-thumbnail" />
+                        </figure>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="text-justify" ng-if="elem.pred.value.search(attr.modalDescription) != -1" ng-repeat="elem in array">{{elem.obj.value}}</p>
+                        <p class="referencias" ng-if="elem.pred.value.search('isPrimaryTopicOf') != -1" 
+                            ng-repeat="elem in array"><i>Tomado de: <a href="{{elem.obj.value}}">{{elem.obj.value}}</a></i>
+                        </p>
+                        <!--datos categorias-->
+                        <p ng-repeat="elem in array" ng-if="elem.pred.value.search('street-address') != -1 && elem.obj.value.search('No disponible') == -1" ><i class="fa fa-envira"></i> <strong>Dirección: </strong> {{elem.obj.value}}</p>
+                        <p ng-repeat="elem in array" ng-if="elem.pred.value.search('email') != -1 && elem.obj.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Email: </strong> {{elem.obj.value}}</p>
+                        <p ng-repeat="elem in array" ng-if="elem.pred.value.search('hasValue') != -1 && elem.obj.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>No. habitaciones: </strong> {{elem.obj.value}}</p>
+                        <p ng-repeat="elem in array" ng-if="elem.pred.value.search('quantity') != -1 && elem.obj.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>No. camas: </strong> {{elem.obj.value}}</p>
+                        <p class="referencias" ng-repeat="elem in array" ng-if="elem.pred.value.search('homepage') != -1 && elem.obj.value.search('No disponible') == -1" ><i class="fa fa-envira"></i> <strong>Página Veb: </strong><a  href={{elem.obj.value}}>{{elem.obj.value}}</a></p>
+                        <!-- <strong class="referencias" ng-repeat="elem in array" ng-if="elem.obj.value.search('.mp4') != -1">
+                            <a target="_blank" href={{elem.obj.value}}><i class="fa fa-camera-retro fa-4x"></i></a>
+                        </strong> -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" ng-repeat="array in dato">
+                <strong class="referencias" ng-repeat="elem in array" ng-if="elem.obj.value.search('.mp4') != -1">
+                    <a target="_blank" href={{elem.obj.value}}><i class="fa fa-camera-retro fa-4x text-center"></i></a>
+                </strong>
+            </div>
+        </div>
+    </div>
+</div>
