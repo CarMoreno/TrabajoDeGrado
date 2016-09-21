@@ -12,11 +12,11 @@ Además, existe la posibilidad de que usuarios expertos consulten el _dataset_ a
 
 ![ruta](http://i.imgur.com/JeE95m4.png)
 
-## Detalles de una categoria
+## Detalles de una categoría
 
 ![detalles](http://i.imgur.com/pFL33F2.png)
 
 ## SPARQL Endpoint
 
-Para accder al endpoint click [aquí](http://190.14.254.238:3030/sparql.tpl)
+Para acceder al endpoint click [aquí](http://190.14.254.238:3030/sparql.tpl)
 
