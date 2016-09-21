@@ -1,4 +1,4 @@
-var divMapaRutaMaiz = document.getElementById('mapaRutaMaiz')
+var divMapaRutaMaiz = document.getElementById('mapa')
 // console.log('Div Mapa:'+divMapaRutaMaiz)
 navigator.geolocation.getCurrentPosition(fn_ok, fn_error) // mi posicion
 

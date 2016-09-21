@@ -115,7 +115,7 @@ html, body{
   width: 100%;
   height: 100%;
 }*/
-.box-body #mapaRutaMaiz, .box-body video{
+.box-body #mapa, .box-body video{
   position:absolute;
   top:0;
   left:0;
@@ -137,7 +137,3 @@ html, body{
 }
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
-/*.arrastrar {
-  min-height: 100px;
-}*/
-connectedSortable { cursor: move;}

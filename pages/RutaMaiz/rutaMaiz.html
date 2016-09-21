@@ -34,7 +34,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body div-frame">
-              <div id="mapaRutaMaiz"></div>
+              <div id="mapa"></div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -69,10 +69,9 @@
   <!-- Main Footer -->
   <ng-include src="'pages/footer.html'"></ng-include>
 </div><!-- ./wrapper -->
-<script src="mapas.js"></script>
+<!-- <script src="mapas.js"></script> -->
 <script>
 $(function () {
-
   "use strict";
   $(".arrastrar").draggable({
     handle: ".box-header",
@@ -80,7 +79,5 @@ $(function () {
   });
   $(".arrastrar .box-header").css("cursor", "move");
   // $(".arrastrar").css({"top": 100, "right": 300});
-
-
 });
 </script>

@@ -2,7 +2,6 @@ var ecolodApp = angular.module('EcolodApp')
 //ecolodApp.constant("endpoint", "http://localhost:3030/ecoLOD/query?query=")
 //IP Privada ecolodApp.constant("endpoint", "http://192.168.14.2:3030/ecoLOD/query?query=")
 //IP Publica 
-ecolodApp.constant("endpoint", "http://190.14.254.238:3030/ecoLOD/query?query=")
 //http://192.168.14.2
 ecolodApp.factory('queryService',
     function($http, endpoint)
@@ -33,38 +32,38 @@ ecolodApp.factory('queryService',
         serviceQuery.setArray = function(arrayQuery, $scope) {
             $scope.categorias = {}
             for (var i in arrayQuery){
-                if (arrayQuery[i].consulta.indexOf("Fauna") != -1) {
+                if (arrayQuery[i].indexOf("Fauna") != -1) {
                     $scope.categorias.fauna = []
-                    serviceQuery.getResults(arrayQuery[i].consulta, $scope.categorias.fauna);
+                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.fauna);
                 }
-                else if (arrayQuery[i].consulta.indexOf("Flora") != -1 ) {
+                else if (arrayQuery[i].indexOf("Flora") != -1 ) {
                     $scope.categorias.flora = []
-                    serviceQuery.getResults(arrayQuery[i].consulta, $scope.categorias.flora);
+                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.flora);
                 }
 
-                else if (arrayQuery[i].consulta.indexOf("Alojamientos") != -1 ) {
+                else if (arrayQuery[i].indexOf("Alojamientos") != -1 ) {
                     $scope.categorias.alojamientos = []
-                    serviceQuery.getResults(arrayQuery[i].consulta, $scope.categorias.alojamientos);
+                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.alojamientos);
                 }
 
-                else if (arrayQuery[i].consulta.indexOf("Restaurantes") != -1 ) {
+                else if (arrayQuery[i].indexOf("Restaurantes") != -1 ) {
                     $scope.categorias.restaurantes = []
-                    serviceQuery.getResults(arrayQuery[i].consulta, $scope.categorias.restaurantes);
+                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.restaurantes);
                 }
 
-                else if (arrayQuery[i].consulta.indexOf("Lugares") != -1 ) {
+                else if (arrayQuery[i].indexOf("Lugares") != -1 ) {
                     $scope.categorias.lugares = []
-                    serviceQuery.getResults(arrayQuery[i].consulta, $scope.categorias.lugares);
+                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.lugares);
                 }
 
-                else if (arrayQuery[i].consulta.indexOf("Eventos") != -1 ) {
+                else if (arrayQuery[i].indexOf("Eventos") != -1 ) {
                     $scope.categorias.eventos = []
-                    serviceQuery.getResults(arrayQuery[i].consulta, $scope.categorias.eventos);
+                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.eventos);
                 }
 
                 else {
                     $scope.categorias.empresas = []
-                    serviceQuery.getResults(arrayQuery[i].consulta, $scope.categorias.empresas);   
+                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.empresas);   
                 }
             }    
         };
