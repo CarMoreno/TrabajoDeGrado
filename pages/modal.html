@@ -7,24 +7,36 @@
             <span ng-if="elem.pred.value.search(attr.modalSpam) != -1" ng-repeat="elem in array"><i>{{elem.obj.value}}</i></span>
         </div>
         <div id="cuerpo-modal">
-            <div class="modal-body"  ng-repeat="array in dato">
+            <!-- {{otrosDatos}} -->
+            <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-6" ng-repeat="array in dato">
                         <figure>
                             <img src={{elem.obj.value}} ng-if="elem.pred.value.search('depiction') != -1 && elem.obj.value.search('imgur') != -1" ng-repeat="elem in array" class="img-responsive img-thumbnail" />
                         </figure>
                     </div>
                     <div class="col-md-6">
-                        <p class="text-justify" ng-if="elem.pred.value.search(attr.modalDescription) != -1" ng-repeat="elem in array">{{elem.obj.value}}</p>
-                        <p class="referencias" ng-if="elem.pred.value.search('isPrimaryTopicOf') != -1" 
-                            ng-repeat="elem in array"><i>Tomado de: <a href="{{elem.obj.value}}">{{elem.obj.value}}</a></i>
-                        </p>
-                        <!--datos categorias-->
-                        <p ng-repeat="elem in array" ng-if="elem.pred.value.search('street-address') != -1 && elem.obj.value.search('No disponible') == -1" ><i class="fa fa-envira"></i> <strong>Dirección: </strong> {{elem.obj.value}}</p>
-                        <p ng-repeat="elem in array" ng-if="elem.pred.value.search('email') != -1 && elem.obj.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Email: </strong> {{elem.obj.value}}</p>
-                        <p ng-repeat="elem in array" ng-if="elem.pred.value.search('hasValue') != -1 && elem.obj.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>No. habitaciones: </strong> {{elem.obj.value}}</p>
-                        <p ng-repeat="elem in array" ng-if="elem.pred.value.search('quantity') != -1 && elem.obj.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>No. camas: </strong> {{elem.obj.value}}</p>
-                        <p class="referencias" ng-repeat="elem in array" ng-if="elem.pred.value.search('homepage') != -1 && elem.obj.value.search('No disponible') == -1" ><i class="fa fa-envira"></i> <strong>Página Veb: </strong><a  href={{elem.obj.value}}>{{elem.obj.value}}</a></p>
+                        <div ng-repeat="array in dato">
+                            <p class="text-justify" ng-if="elem.pred.value.search(attr.modalDescription) != -1" 
+                                ng-repeat="elem in array"> {{elem.obj.value}}</p>
+                            
+                            <p class="referencias" ng-if="elem.pred.value.search('isPrimaryTopicOf') != -1" 
+                                ng-repeat="elem in array"><i>Tomado de: <a href="{{elem.obj.value}}">{{elem.obj.value}}</a></i>
+                            </p>
+                            
+                            <p class="referencias" ng-repeat="elem in array" ng-if="elem.pred.value.search('homepage') != -1 && elem.obj.value.search('No disponible') == -1" ><i class="fa fa-envira"></i> <strong>Página Web: </strong><a  href={{elem.obj.value}}>{{elem.obj.value}}</a></p>
+                            
+                            <p ng-repeat="elem in array" ng-if="elem.pred.value.search('email') != -1 && elem.obj.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Email: </strong> {{elem.obj.value}}</p>
+                        </div>
+                        <!--OtrosDatos categorias-->
+                        <div ng-repeat="array in otrosDatos">
+                            <!-- {{array}} -->
+                             <p ng-repeat="elem in array" ng-if="elem.direccion.type.search('literal') != -1 && elem.direccion.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Dirección </strong> {{elem.direccion.value}}</p>
+                             <p ng-repeat="elem in array" ng-if="elem.numHabitaciones.datatype.search('integer') != -1 && elem.numHabitaciones.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Número de habitaciones: </strong> {{elem.numHabitaciones.value}}</p>
+                             <p ng-repeat="elem in array" ng-if="elem.numCamas.datatype.search('integer') != -1 && elem.numCamas.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Número de habitaciones: </strong> {{elem.numCamas.value}}</p>
+                             <p ng-repeat="elem in array" ng-if="elem.abre.datatype.search('time') != -1 && elem.abre.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Abre a las:</strong> {{elem.abre.value}}</p>
+                             <p ng-repeat="elem in array" ng-if="elem.cierra.datatype.search('time') != -1 && elem.cierra.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Cierra a las:</strong> {{elem.cierra.value}}</p>
+                        </div>
                         <!-- <strong class="referencias" ng-repeat="elem in array" ng-if="elem.obj.value.search('.mp4') != -1">
                             <a target="_blank" href={{elem.obj.value}}><i class="fa fa-camera-retro fa-4x"></i></a>
                         </strong> -->

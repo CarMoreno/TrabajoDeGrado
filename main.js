@@ -1,5 +1,7 @@
 var ecolodApp = angular.module('EcolodApp', ['ngRoute', 'angularUtils.directives.dirPagination', 'ui.bootstrap'])
-ecolodApp.constant("endpoint", "http://190.14.254.238:3030/ecoLOD/query?query=")
+// IP Privada http://192.168.14.2:3030/ecoLOD/query?query=
+// IP Publica http://190.14.254.238:3030/ecoLOD/query?query=
+ecolodApp.constant("endpoint", "http://localhost:3030/ecoLOD/query?query=")
 ecolodApp.constant("RUTA_MAIZ", "RutaDelMaiz")
 // Configuración de las rutas
 ecolodApp.config(function($routeProvider) {

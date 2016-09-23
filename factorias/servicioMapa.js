@@ -84,8 +84,8 @@ ecolodApp.factory('mapService',
 			}//fin fn_pintar
 		}// fin setConfigPath
 
-		serviceMap.setConfigPlaces = function() {
-			
+		serviceMap.getDirections = function(ruta) {
+			query = ""			
 		}
 		/**
 		 * [fn_ok Si decides compartir la ubicacion, el callback llega hasta aqui]
@@ -99,7 +99,7 @@ ecolodApp.factory('mapService',
 			var gMap = new google.maps.Map(divMapa, objConfig)// creamos un nuevo mapa, recibe el div donde se va a renderizar y una configuracion
 			serviceMap.setConfigMarker(gMap, gLatLonStart, gLatLonEnd) //configuramos los markers
 			serviceMap.setConfigPath(gMap, gLatLonStart, gLatLonEnd) //configuramos el path entre los puntos de inicio y llegada
-			serviceMap.setConfigPlaces() // configura la pintada de los lugares (eventos, alojamientos, restaurantes)
+			//serviceMap.setConfigPlaces() // configura la pintada de los lugares (eventos, alojamientos, restaurantes)
 		}//fin fn_ok
 
 		/**

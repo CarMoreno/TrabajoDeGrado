@@ -1,6 +1,7 @@
 var ecolodApp = angular.module('EcolodApp')
 //ecolodApp.constant("endpoint", "http://localhost:3030/ecoLOD/query?query=")
-//IP Privada ecolodApp.constant("endpoint", "http://192.168.14.2:3030/ecoLOD/query?query=")
+//IP Privada 
+//ecolodApp.constant("endpoint", "http://192.168.14.2:3030/ecoLOD/query?query=")
 //IP Publica 
 //http://192.168.14.2
 ecolodApp.factory('queryService',
@@ -67,6 +68,25 @@ ecolodApp.factory('queryService',
                 }
             }    
         };
+
+        serviceQuery.getOne = function(query, array) {
+            $http({
+                url: endpoint + escape(query),
+                headers: {'Content-type' : 'application/x-www-form-urlencoded',
+                    'Accept' : 'application/sparql-results+json'},
+                method: "GET",
+                params: {format: "json"}    
+            })
+            .success(function(data, status, headers, config) {
+                results = data.results.bindings
+                console.log(results)
+                array.push(results)
+            })
+            .error(function(data, status, headers, config) {
+                console.log("Error ... "+status)
+            })
+        }
+
         /**
          * [getResults description]
          * @param  {[type]} $scope [description]
