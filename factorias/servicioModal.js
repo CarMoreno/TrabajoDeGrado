@@ -21,10 +21,7 @@ ecolodApp.factory('modalService', ['queryService',
 						WHERE {
 							?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/`+ruta+"/"+categoria+`>. 
 							?sub FOAF:depiction <`+parametro+`> .
-						}`
-			if (categoria.toLowerCase() == 'alojamientos') {
-				queryDaticos = ``
-			}											
+						}`											
 			queryService.getResults(query, $scope.dato)
 			modalService.setValues(categoria, $scope)
 			modalService.selectDataCustom(categoria, ruta, parametro, $scope)
@@ -96,7 +93,6 @@ ecolodApp.factory('modalService', ['queryService',
 		 * @param {[type]} $scope    []
 		 */
 		modalService.setValues = function(categoria, $scope) {
-			console.log(categoria)
 			$scope.attr = {} // un objeto para ir guardando los values
 			categoria = categoria.toLowerCase()
 			if (categoria == "fauna" || categoria == "flora") {

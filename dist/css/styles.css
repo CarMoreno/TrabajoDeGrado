@@ -103,7 +103,7 @@ html, body{
   text-decoration: none;
 }
 
-.div-frame{
+.div-frame, .angular-google-map-container{
   position: relative;
   padding-bottom: 56.25%;
   padding-top: 30px;

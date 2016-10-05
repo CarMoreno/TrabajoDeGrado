@@ -1,9 +1,21 @@
 var app = angular.module('EcolodApp')
-app.controller('rutaMaizCtrl', ['$scope', '$route', '$http', '$uibModal', 'queryService', 'modalService', 'mapService',
-    function($scope, $route, $http, $uibModal, queryService, modalService, mapService) 
+app.controller('rutaMaizCtrl', ['$scope', '$route', '$http', '$uibModal', 'queryService', 'modalService',
+    function($scope, $route, $http, $uibModal, queryService, modalService) 
     {
+        $scope.map = { center: { latitude: 4.0744162, longitude: -76.2051463 }, zoom: 13 };
+        $scope.marker = {}
+        $scope.window = {}
+        // $scope.window = {
+        //         marker: {},
+        //         show: false,
+        //         closeClick : function() {
+        //             this.show = false
+        //         },
+        //         options: {}
+        // }
         $scope.ruta = $route;
-        mapService.go("RutaDelMaiz")
+        $scope.rutaCategorias = {'fauna':'pages/rutaMaiz/fauna.html', 'flora':'pages/rutaMaiz/flora.html', 'alojamientos':'pages/rutaMaiz/alojamientos.html',
+        'restaurantes':'pages/rutaMaiz/restaurantes.html', 'lugares':'pages/rutaMaiz/lugares.html', 'empresas':'pages/rutaMaiz/empresas.html', 'eventos': 'pages/rutaMaiz/eventos.html' }
         var arrayQuery = [
             `PREFIX UMBEL: <http://umbel.org/umbel#> 
             SELECT DISTINCT ?sub 
@@ -58,6 +70,12 @@ app.controller('rutaMaizCtrl', ['$scope', '$route', '$http', '$uibModal', 'query
                     },
                     ruta: function() {
                         return ruta
+                    },
+                    scope_marker: function() {
+                        return $scope.marker
+                    },
+                    scope_window: function() {
+                        return $scope.window
                     }
                 }
             })

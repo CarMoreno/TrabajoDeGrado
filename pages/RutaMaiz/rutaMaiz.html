@@ -9,7 +9,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Ruta del Maíz <!--parque de la guadua hasta campoalegre-->
+        Ruta del Maíz<!--parque de la guadua hasta campoalegre-->
       </h1>
       <ol class="breadcrumb">
         <li><a href="#/"><i class="fa fa-home"></i> Inicio</a></li>
@@ -21,7 +21,7 @@
     <section class="content">
       <div class="row">
         <!-- /.col -->
-        <div class="col-md-8 col-lg-8 col-sm-8">
+        <div class="col-md-7 col-lg-7 col-sm-7">
           <!-- box -->
           <div class="box box-success box-solid">
             <div class="box-header with-border">
@@ -34,18 +34,32 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body div-frame">
-              <div id="mapa"></div>
+              <div id="mapa">
+                <ui-gmap-google-map ng-if="map.center" center='map.center'  zoom='map.zoom'>
+                  <ui-gmap-window
+                    show="window.show"
+                    templateUrl="'window.html'"
+                    templateParameter="window">    
+                  </ui-gmap-window>
+                  <ui-gmap-marker 
+                    coords='marker.coords' 
+                    idkey='0' 
+                    options='marker.options'
+                    events='marker.events'>
+                    <!-- events='marker.events' -->
+                  </ui-gmap-marker>
+                </ui-gmap-google-map>
+              </div>
             </div>
-            <!-- /.box-body -->
+            <!-- /.box-body templateUrl="'page/infowindow.tpl.html'"-->
           </div>
           <!-- /.box -->
         </div>
-<!-- /.col -->
-        <div class="col-md-4 col-lg-4 col-sm-4">
+        <div class="col-md-5 col-lg-5 col-sm-5">
           <!-- box -->
           <div class="box box-success box-solid arrastrar"> 
             <div class="box-header with-border">
-              <h3 class="box-title">Datos</h3>
+              <h3 class="box-title">Categorías {{window}}, {{marker}}</h3>
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -53,15 +67,19 @@
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-          <div class="box-body text-justify" ng-control="rutaMaizCtrl">
+          <div class="box-body text-justify">
             <ng-include src="'pages/categorias.html'"></ng-include>
           </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
-        <!-- /.col -->       
-      </div>
+<!-- /.col -->      
+      </div><!-- .row -style="bottom: 450px; left:590px;-->
+      <!-- <div class="row"> -->
+        
+        <!-- /.col --> 
+      <!-- </div> -->
     </section>
     <!-- ======================= (FIN CONTENIDO DE LA PAGINA)=========================-->
   </div>

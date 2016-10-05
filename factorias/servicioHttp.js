@@ -79,14 +79,40 @@ ecolodApp.factory('queryService',
             })
             .success(function(data, status, headers, config) {
                 results = data.results.bindings
-                console.log(results)
                 array.push(results)
+                //return array
             })
             .error(function(data, status, headers, config) {
                 console.log("Error ... "+status)
             })
         }
 
+        serviceQuery.getDataMarkers = function(scope_marker, query) {
+            $http({
+                url: endpoint + escape(query),
+                headers: {'Content-type' : 'application/x-www-form-urlencoded',
+                    'Accept' : 'application/sparql-results+json'},
+                method: "GET",
+                params: {format: "json"}    
+            })
+            .success(function(data, status, headers, config) {
+                var results = data.results.bindings // el string de la direccion
+                //console.log(results)
+                var geocoder = new google.maps.Geocoder()
+                geocoder.geocode({address: results[0].direccion.value}, function(data, status) {
+                    if(status == google.maps.GeocoderStatus.OK){
+                        var lat = data[0].geometry.location.lat()
+                        var lng = data[0].geometry.location.lng()
+                        scope_marker.coords = {latitude: lat, longitude: lng}
+                    }
+                })
+
+                                
+            })
+            .error(function(data, status, headers, config) {
+                console.log("Error ... "+status)
+            })        
+        }
         /**
          * [getResults description]
          * @param  {[type]} $scope [description]
@@ -141,7 +167,7 @@ ecolodApp.factory('queryService',
 
             .error(function(data, status, headers, config) 
             { 
-                console.log(data)
+                console.log(status)
             });
         };
 

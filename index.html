@@ -64,6 +64,7 @@ desired effect
 <div ng-view></div>
 <!-- REQUIRED JS SCRIPTS -->
 
+<script src="libs/lodash.min.js"></script>
 <!-- jQuery 2.2.0 -->
 <script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <script src="plugins/jQueryUI/jquery-ui.min.js"></script>
@@ -82,15 +83,21 @@ desired effect
 <!-- Main -->
 <script src="main.js"></script>
 <!--Mapas-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE366Gf2CvuA38uaZBSVgQr5hy4IVse9Y" type="text/javascript"></script><!--mapa version 3 (dinamicos)-->
+<script src="libs/angular-simple-logger.min.js"></script>
+<script src="libs/angular-google-maps.min.js"></script>
 
 <!-- <script src="factorias/servicioModal.js"></script> -->
 <!-- Controladores -->
 <script src="controladores/inicioCtrl.js"></script>
 <script src="controladores/rutaMaiz/rutaMaizCtrl.js"></script>
+<script src="controladores/rutaAgricola/rutaAgricolaCtrl.js"></script>
+<script src="controladores/rutaJardin/rutaJardinCtrl.js"></script>
+<script src="controladores/rutaOriente/rutaOrienteCtrl.js"></script>
+<script src="controladores/riofrio/riofrioCtrl.js"></script>
 <script src="controladores/modalCtrl.js"></script>
+<!-- <script src="controladores/mapaCtrl.js"></script> -->
 <!-- <script src="controladores/resultadoCtrl.js"></script>
-<!-- Factorias -->
+<! Factorias -->
 <script src="factorias/servicioHttp.js"></script>
 <script src="factorias/servicioVideo.js"></script>
 <script src="factorias/servicioModal.js"></script>
