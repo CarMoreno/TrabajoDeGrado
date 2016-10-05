@@ -1,10 +1,14 @@
-var ecolodApp = angular.module('EcolodApp', ['ngRoute', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'uiGmapgoogle-maps'])
-ecolodApp.config(function(uiGmapGoogleMapApiProvider) {
+var ecolodApp = angular.module('EcolodApp', ['ngRoute', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'uiGmapgoogle-maps', 'hljs'])
+ecolodApp.config(function(uiGmapGoogleMapApiProvider, hljsServiceProvider) {
     uiGmapGoogleMapApiProvider.configure({
         key: 'AIzaSyBE366Gf2CvuA38uaZBSVgQr5hy4IVse9Y',
         v: '3.20', //defaults to latest 3.X anyhow
         libraries: 'weather,geometry,visualization'
     });
+
+    hljsServiceProvider.setOptions({
+        
+    })
 })
 // IP Privada http://192.168.14.2:3030/ecoLOD/query?query=
 // IP Publica http://190.14.254.238:3030/ecoLOD/query?query=
@@ -47,6 +51,11 @@ ecolodApp.config(function($routeProvider) {
             templateUrl : 'pages/riofrio/riofrio.html',
             controller  : 'riofrioCtrl',
             paginaActiva: '/riofrio'
+        })
+        .when('/endpoint', {
+            templateUrl : 'pages/endpoint.html',
+            controller  : '',
+            paginaActiva: '/endpoint'
         })
         .otherwise({
             redirectTo:'/'

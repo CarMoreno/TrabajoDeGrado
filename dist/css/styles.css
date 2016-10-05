@@ -137,3 +137,13 @@ html, body{
 }
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+/*pre{
+  width: 100%;
+  background-color: #a5d6a7;
+  border-color: #a5d6a7;
+  
+}
+code {
+  font-family: courier;
+  color: #343434 !important;
+}*/

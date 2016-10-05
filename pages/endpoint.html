@@ -1,0 +1,184 @@
+<div class="wrapper">
+	<ng-include src="'pages/header.html'"></ng-include>  
+  	<!-- Left side column. contains the logo and sidebar -->
+  	<ng-include src="'pages/aside.html'"></ng-include>
+  	<!-- Content Wrapper. Contains page content -->
+  	<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Sparql Endpoint<!--parque de la guadua hasta campoalegre-->
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#/"><i class="fa fa-home"></i>Inicio</a></li>
+        <li class="active">Sparql Endpoint</li>
+      </ol>
+    </section>
+
+    <!-- ================ (CONTENIDO DE LA PAGINA) ============================-->
+    <section class="content">
+      <p class="text-justify">Cumpliendo con los estándares de la W3C para la publicación de datasets en la Web de Datos se dispone de un SPARQL Enpoint, una herramienta que permite realizar consultas SPARQL sobre un grafo de entrada compuesto por tripletas RDF. En este caso, el grafo de entrada es el dataset ecoturístico usado en toda la aplicación. <a href="http://190.14.254.238:3030/" target="_blank">Acceder al SPARQL Endpoint</a></p>
+      <p lass="text-justify">A continuación se muestran algunas consultas que pueden realizarse en el SPARQL Endpoint</p> 
+      <div class="row">
+        <div class="col-md-6">
+          <div class="box box-default collapsed-box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Consulta 1</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" hljs hljs-no-escape>
+# Selecciona una direccion de las empresas
+# de la Ruta del Maíz.
+
+PREFIX UMBEL: &lt;http://umbel.org/umbel#&gt;
+PREFIX VCARD: &lt;http://www.w3.org/2006/vcard/ns#&gt;
+PREFIX MZ: &lt;http://190.14.254.237/dataseteco/RutaDelMaiz/&gt;       
+SELECT ?direccion 
+WHERE {
+  ?sub  UMBEL:isRelatedTo MZ:Empresas. 
+  ?sub VCARD:adr ?cualquiera .
+  ?cualquiera VCARD:street-address ?direccion .
+}
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <div class="col-md-6">
+          <div class="box box-default collapsed-box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Consulta 2</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" hljs hljs-no-escape>
+# Selecciona la hora en que abre y cierra los restaurantes de la Ruta del Maíz
+
+PREFIX UMBEL: &lt;http://umbel.org/umbel#&gt;
+PREFIX FOAF: &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX GR: &lt;http://purl.org/goodrelations/v1#&gt;
+PREFIX MZ: &lt;http://190.14.254.237/dataseteco/RutaDelMaiz/&gt;
+SELECT ?abre ?cierra
+WHERE {
+  ?sub  UMBEL:isRelatedTo MZ:Restaurantes. 
+  ?sub FOAF:depiction ?cualquier .
+  ?sub GR:hasOpeningHoursSpecification ?obj2 .
+  ?obj2 GR:opens ?abre .
+  ?obj2 GR:closes ?cierra .
+}            
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+            
+		<!-- /.col -->      
+      </div><!-- .row -style="bottom: 450px; left:590px;-->
+            <div class="row">
+        <div class="col-md-6">
+          <div class="box box-default box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Consulta 3</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" hljs hljs-no-escape>
+# Selecciona el numero de habitaciones, de camas y la 
+# direccion de todos los hoteles de la Ruta del Anillo 
+# Agricola.
+
+PREFIX UMBEL: &lt;http://umbel.org/umbel#&gt;
+PREFIX ACCO: &lt;http://purl.org/acco/ns#&gt;
+PREFIX FOAF: &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX VCARD: &lt;http://www.w3.org/2006/vcard/ns#&gt;
+PREFIX GR: &lt;http://purl.org/goodrelations/v1#&gt;
+PREFIX JB: &lt;http://190.14.254.237/dataseteco/RutaDelAnilloAgricola/&gt;
+SELECT ?direccion ?numHabitaciones ?numCamas
+WHERE {
+  ?sub  UMBEL:isRelatedTo JB:Alojamientos. 
+  ?sub FOAF:depiction ?cualquier .
+  ?sub VCARD:adr ?obj1 .
+  ?obj1 VCARD:street-address ?direccion .
+
+  ?obj2 ACCO:partOf ?sub .
+  ?obj2 ACCO:numberOfRooms ?uriValue .
+  ?uriValue GR:hasValue ?numHabitaciones .
+
+  ?obj2 ACCO:bed ?uriBed .
+  ?uriBed ACCO:quantity ?numCamas .
+}
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <div class="col-md-6">
+          <div class="box box-default box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Consulta 4</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" hljs hljs-no-escape>
+# Selecciona las direcciones de Alojamientos, Empresas y Restaurantes
+# de la Ruta del Maíz
+
+PREFIX UMBEL: &lt;http://umbel.org/umbel#&gt;
+PREFIX VCARD: &lt;http://www.w3.org/2006/vcard/ns#&gt;
+PREFIX MZ: &lt;http://190.14.254.237/dataseteco/RutaDelMaiz/&gt;
+SELECT DISTINCT ?direccion 
+WHERE {
+  {
+    ?sub  UMBEL:isRelatedTo MZ:Empresas. 
+    ?sub VCARD:adr ?obj1 .
+  }
+  UNION
+  {
+    ?sub  UMBEL:isRelatedTo MZ:Alojamientos. 
+    ?sub VCARD:adr ?obj1 .
+  }
+  UNION
+  {
+    ?sub  UMBEL:isRelatedTo MZ:Restaurantes. 
+    ?sub VCARD:adr ?obj1 .
+  }
+
+  ?obj1 VCARD:street-address ?direccion .
+}
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+            
+		<!-- /.col -->      
+      </div><!-- .row -style="bottom: 450px; left:590px;-->
+      <!-- <div class="row"> -->
+    </section>
+    <!-- ======================= (FIN CONTENIDO DE LA PAGINA)=========================-->
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- Main Footer -->
+  <ng-include src="'pages/footer.html'"></ng-include>
+</div><!-- ./wrapper -->
