@@ -9,11 +9,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Ruta del Maíz<!--parque de la guadua hasta campoalegre-->
+        Riofrio <!--parque de la guadua hasta campoalegre-->
       </h1>
       <ol class="breadcrumb">
         <li><a href="#/"><i class="fa fa-home"></i> Inicio</a></li>
-        <li class="active">Ruta del Maíz</li>
+        <li class="active">Riofrio</li>
       </ol>
     </section>
 
@@ -33,7 +33,7 @@
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body div-frame">
+             <div class="box-body div-frame">
               <div id="mapa">
                 <ui-gmap-google-map ng-if="map.center" center='map.center'  zoom='map.zoom'>
                   <ui-gmap-window
@@ -51,10 +51,11 @@
                 </ui-gmap-google-map>
               </div>
             </div>
-            <!-- /.box-body templateUrl="'page/infowindow.tpl.html'"-->
+            <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
+<!-- /.col -->
         <div class="col-md-5 col-lg-5 col-sm-5" ng-controller="tabsCtrl">
           <!-- box -->
           <div class="box box-success box-solid arrastrar"> 
@@ -67,19 +68,15 @@
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-          <div class="box-body text-justify">
+          <div class="box-body text-justify" ng-control="riofrioCtrl">
             <ng-include src="'pages/categorias.html'"></ng-include>
           </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
-<!-- /.col -->      
-      </div><!-- .row -style="bottom: 450px; left:590px;-->
-      <!-- <div class="row"> -->
-        
-        <!-- /.col --> 
-      <!-- </div> -->
+        <!-- /.col -->       
+      </div>
     </section>
     <!-- ======================= (FIN CONTENIDO DE LA PAGINA)=========================-->
   </div>

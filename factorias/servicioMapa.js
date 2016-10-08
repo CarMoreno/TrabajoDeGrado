@@ -34,6 +34,9 @@ ecolodApp.factory('mapService', ['queryService',
 					break
 				case "restaurantes":
 					scope_marker.options = {icon: 'dist/img/restaurante.png'}
+					break
+				// case "lugares":
+				// 	scope_marker.options = {icon: 'dist/img/lugares.png'}
 			}
 		}
 

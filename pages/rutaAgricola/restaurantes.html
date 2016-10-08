@@ -11,10 +11,9 @@
     </div>
   </div>
   <div class="box-body">
-    <div ng-hide="categorias.restaurantes.length" class="overlay"><i class="fa fa-refresh fa-spin"></i></div>
     <ul class="products-list product-list-in-box" dir-paginate="cards in categorias.restaurantes | filter:search | itemsPerPage:3">
       <li class="item" ng-repeat="restaurantes in cards" ng-if="restaurantes.obj.value.search('imgur') != -1"
-      ng-click="open(restaurantes.obj.value, 'Restaurantes', 'RutaDelMaiz')">
+      ng-click="open(restaurantes.obj.value, 'Restaurantes', 'RutaDelAnilloAgricola')">
         <div class="product-img" ng-repeat="restaurantes in cards"
                                    ng-if="restaurantes.pred.value.search('depiction') != -1">
           <img src={{restaurantes.obj.value}} alt="Product Image">

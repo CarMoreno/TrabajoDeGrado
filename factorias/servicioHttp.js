@@ -18,7 +18,7 @@ ecolodApp.factory('queryService',
         serviceQuery.setCriterioConsulta = function(busqueda)
         {
             serviceQuery.criterioConsulta = busqueda;
-        };
+        }
 
 
         /**
@@ -28,46 +28,45 @@ ecolodApp.factory('queryService',
         serviceQuery.getCriterioConsulta = function()
         {
             return serviceQuery.criterioConsulta;
-        };
+        }
 
-        serviceQuery.setArray = function(arrayQuery, $scope) {
+        serviceQuery.setArray = function(query, tabName, $scope) {
             $scope.categorias = {}
-            for (var i in arrayQuery){
-                if (arrayQuery[i].indexOf("Fauna") != -1) {
-                    $scope.categorias.fauna = []
-                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.fauna);
-                }
-                else if (arrayQuery[i].indexOf("Flora") != -1 ) {
-                    $scope.categorias.flora = []
-                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.flora);
-                }
+            if (tabName == "Fauna") {
+                $scope.categorias.fauna = []
+                serviceQuery.getResults(query, $scope.categorias.fauna);
+            }
+            else if (tabName == "Flora") {
+                $scope.categorias.flora = []
+                serviceQuery.getResults(query, $scope.categorias.flora);
+            }
 
-                else if (arrayQuery[i].indexOf("Alojamientos") != -1 ) {
-                    $scope.categorias.alojamientos = []
-                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.alojamientos);
-                }
+            else if (tabName == "Alojamientos") {
+                $scope.categorias.alojamientos = []
+                serviceQuery.getResults(query, $scope.categorias.alojamientos);
+            }
 
-                else if (arrayQuery[i].indexOf("Restaurantes") != -1 ) {
-                    $scope.categorias.restaurantes = []
-                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.restaurantes);
-                }
+            else if (tabName == "Restaurantes") {
+                $scope.categorias.restaurantes = []
+                serviceQuery.getResults(query, $scope.categorias.restaurantes);
+            }
 
-                else if (arrayQuery[i].indexOf("Lugares") != -1 ) {
-                    $scope.categorias.lugares = []
-                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.lugares);
-                }
+            else if (tabName == "Lugares") {
+                $scope.categorias.lugares = []
+                serviceQuery.getResults(query, $scope.categorias.lugares);
+            }
 
-                else if (arrayQuery[i].indexOf("Eventos") != -1 ) {
-                    $scope.categorias.eventos = []
-                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.eventos);
-                }
+            else if (tabName == "Eventos") {
+                $scope.categorias.eventos = []
+                serviceQuery.getResults(query, $scope.categorias.eventos);
+            }
 
-                else {
-                    $scope.categorias.empresas = []
-                    serviceQuery.getResults(arrayQuery[i], $scope.categorias.empresas);   
-                }
-            }    
-        };
+            else {
+                $scope.categorias.empresas = []
+                serviceQuery.getResults(query, $scope.categorias.empresas);   
+            }
+            
+        }    
 
         serviceQuery.getOne = function(query, array) {
             $http({
@@ -121,7 +120,6 @@ ecolodApp.factory('queryService',
          */
         serviceQuery.getResults = function(query, array)
         {
-            // console.log("QUERY: "+query)
             $http({
             url: endpoint + escape(query), 
             headers: { 'Content-type' : 'application/x-www-form-urlencoded',
@@ -136,6 +134,7 @@ ecolodApp.factory('queryService',
             {
                 results = data.results.bindings;
                 querys = [];
+                //console.log(results)
                 //$scope.datos = [];
                 for(i=0; i<results.length; i++)
                 {
@@ -157,8 +156,7 @@ ecolodApp.factory('queryService',
                         .success(function(data, status, headers, config) 
                         {
                             resuls = data.results.bindings;
-
-                            array.push(resuls);
+                            array.push(resuls)
                             //console.log(array.length);
                         })
                 }

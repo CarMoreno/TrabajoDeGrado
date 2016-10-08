@@ -10,11 +10,10 @@
       <i class="fa fa-refresh fa-spin"></i>
     </div>
   </div>
-  <!-- /.box-header -->
   <div class="box-body">
     <ul class="products-list product-list-in-box" dir-paginate="cards in categorias.alojamientos | filter:search | itemsPerPage:3">
       <li class="item" ng-repeat="alojamientos in cards" ng-if="alojamientos.obj.value.search('imgur') != -1"
-      ng-click="open(alojamientos.obj.value, 'Alojamientos', 'RutaDelMaiz')">
+      ng-click="open(alojamientos.obj.value, 'Alojamientos', 'Riofrio')">
         <div class="product-img" ng-repeat="alojamientos in cards"
                                    ng-if="alojamientos.pred.value.search('depiction') != -1">
           <img src={{alojamientos.obj.value}} alt="Product Image">
@@ -31,7 +30,7 @@
     </ul>
   </div>
   <!-- /.box-body -->
-  <div class="box-footer text-center" ng-if="categorias.alojamientos.length > 0">
+  <div class="box-footer text-center">
     <!-- <a href="javascript:void(0)" class="uppercase">Ver todos</a> -->
     <dir-pagination-controls
                max-size="3"

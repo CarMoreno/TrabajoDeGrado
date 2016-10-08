@@ -14,7 +14,7 @@
     <ul class="products-list product-list-in-box" dir-paginate="cards in categorias.fauna | filter:search | itemsPerPage:3">
       <li class="item" ng-repeat="fauna in cards" 
       ng-if="fauna.obj.value.search('imgur') != -1"
-      ng-click = "open(fauna.obj.value, 'Fauna', 'RutaDelMaiz')">
+      ng-click = "open(fauna.obj.value, 'Fauna', 'RutaDelJardinBotanico')">
         <div class="product-img" ng-repeat="fauna in cards"
                                    ng-if="fauna.pred.value.search('depiction') != -1">
           <img src={{fauna.obj.value}} alt="Product Image">

@@ -1,16 +1,15 @@
 var app = angular.module('EcolodApp')
-app.controller('rutaMaizCtrl', ['$scope', '$route', '$http', '$uibModal', 'modalService', 'queryService',
+app.controller('riofrioCtrl', ['$scope', '$route', '$http', '$uibModal', 'modalService', 'queryService',
     function($scope, $route, $http, $uibModal, modalService, queryService) 
     {
-        qdefault = 'PREFIX UMBEL: <http://umbel.org/umbel#> SELECT DISTINCT ?sub WHERE { ?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/RutaDelMaiz/Lugares>. }'
+        qdefault = 'PREFIX UMBEL: <http://umbel.org/umbel#> SELECT DISTINCT ?sub WHERE { ?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/Riofrio/Lugares>. }'
         queryService.setArray(qdefault, "Lugares", $scope)
-        $scope.map = { center: { latitude: 4.0744162, longitude: -76.2051463 }, zoom: 13 };
+        $scope.ruta = $route
+        $scope.map = { center: { latitude: 4.1566407, longitude: -76.2921399 }, zoom: 15 };
         $scope.marker = {}
         $scope.window = {}
-        $scope.ruta = $route;
-        $scope.rutaCategorias = {'fauna':'pages/rutaMaiz/fauna.html', 'flora':'pages/rutaMaiz/flora.html', 'alojamientos':'pages/rutaMaiz/alojamientos.html',
-        'restaurantes':'pages/rutaMaiz/restaurantes.html', 'lugares':'pages/rutaMaiz/lugares.html', 'empresas':'pages/rutaMaiz/empresas.html',
-        'eventos': 'pages/rutaMaiz/eventos.html' }   
+        $scope.rutaCategorias = {'fauna':'pages/riofrio/fauna.html', 'flora':'pages/riofrio/flora.html', 'alojamientos':'pages/riofrio/alojamientos.html',
+        'restaurantes':'pages/riofrio/restaurantes.html', 'lugares':'pages/riofrio/lugares.html', 'empresas':'pages/riofrio/empresas.html', 'eventos': 'pages/riofrio/eventos.html' }
         $scope.open = function(parametro, categoria, ruta) {
             //
             var instanciaModal = $uibModal.open({

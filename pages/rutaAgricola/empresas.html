@@ -12,7 +12,7 @@
   </div>
   <div class="box-body">
     <ul class="products-list product-list-in-box" dir-paginate="cards in categorias.empresas | filter:search | itemsPerPage:3">
-      <li class="item" ng-repeat="empresas in cards" ng-if="empresas.obj.value.search('imgur') != -1" ng-click = "open(empresas.obj.value, 'Empresas', 'RutaDelMaiz')" >
+      <li class="item" ng-repeat="empresas in cards" ng-if="empresas.obj.value.search('imgur') != -1" ng-click = "open(empresas.obj.value, 'Empresas', 'RutaDelAnilloAgricola')" >
         <div class="product-img" ng-repeat="empresas in cards"
                                    ng-if="empresas.pred.value.search('depiction') != -1">
           <img src={{empresas.obj.value}} alt="Product Image">

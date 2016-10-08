@@ -1,6 +1,6 @@
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title">Eventos</h3>
+    <h3 class="box-title">eventos</h3>
   </div>
   <div class="box box-solid" ng-hide="categorias.eventos.length">
     <div class="box-body">
@@ -13,7 +13,7 @@
   <div class="box-body">
     <ul class="products-list product-list-in-box" dir-paginate="cards in categorias.eventos | filter:search | itemsPerPage:3">
       <li class="item" ng-repeat="eventos in cards" ng-if="eventos.obj.value.search('imgur') != -1"
-      ng-click = "open(eventos.obj.value, 'Eventos', 'RutaDelMaiz')" >
+      ng-click = "open(eventos.obj.value, 'Eventos', 'Riofrio')" >
         <div class="product-img" ng-repeat="eventos in cards"
                                    ng-if="eventos.obj.value.search('imgur') != -1">
           <img src={{eventos.obj.value}} alt="Product Image">
@@ -30,7 +30,7 @@
     </ul>
   </div>
   <!-- /.box-body -->
-  <div class="box-footer text-center" ng-if="categorias.eventos.length > 0">
+  <div class="box-footer text-center">
     <dir-pagination-controls
                max-size="3"
                direction-links="true">
