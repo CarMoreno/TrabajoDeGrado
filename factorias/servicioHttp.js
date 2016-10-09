@@ -112,6 +112,11 @@ ecolodApp.factory('queryService',
                 console.log("Error ... "+status)
             })        
         }
+
+        serviceQuery.getBusquedaKeyWord = function($scope, query) {
+            $scope.datos = []
+            serviceQuery.getResults(query, $scope.datos) 
+        }
         /**
          * [getResults description]
          * @param  {[type]} $scope [description]

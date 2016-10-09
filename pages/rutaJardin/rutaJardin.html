@@ -58,7 +58,21 @@
           <!-- box -->
           <div class="box box-success box-solid arrastrar"> 
             <div class="box-header with-border">
-              <h3 class="box-title">Categorías</h3>
+              <div class="row">
+                <div class="col-md-3"><h3 class="box-title">Categorías</h3></div>
+                <div class="col-md-8">
+                  <!-- barra de busqueda -->
+                  <form name="form" novalidate">
+                    <div class="form-search input-group input-group-sm" 
+                         ng-class="{ 'has-error' : form.busqueda.$invalid && !form.busqueda.$pristine }">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        <input type="text" name="busqueda" class="form-control input-lg" placeholder="Empieza a escribir..."ng-model="search" required>
+                    </div>
+                  </form>
+                  <!-- fin barra de busqueda -->
+                </div>
+              </div>
+              
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>

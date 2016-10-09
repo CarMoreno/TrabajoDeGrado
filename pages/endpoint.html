@@ -108,10 +108,10 @@ PREFIX ACCO: &lt;http://purl.org/acco/ns#&gt;
 PREFIX FOAF: &lt;http://xmlns.com/foaf/0.1/&gt;
 PREFIX VCARD: &lt;http://www.w3.org/2006/vcard/ns#&gt;
 PREFIX GR: &lt;http://purl.org/goodrelations/v1#&gt;
-PREFIX JB: &lt;http://190.14.254.237/dataseteco/RutaDelAnilloAgricola/&gt;
+PREFIX AG: &lt;http://190.14.254.237/dataseteco/RutaDelAnilloAgricola/&gt;
 SELECT ?direccion ?numHabitaciones ?numCamas
 WHERE {
-  ?sub  UMBEL:isRelatedTo JB:Alojamientos. 
+  ?sub  UMBEL:isRelatedTo AG:Alojamientos. 
   ?sub FOAF:depiction ?cualquier .
   ?sub VCARD:adr ?obj1 .
   ?obj1 VCARD:street-address ?direccion .

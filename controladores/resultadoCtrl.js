@@ -7,8 +7,23 @@ ecolodApp.controller('resultadoCtrl', ['$scope', '$route', 'queryService',
 
         function consulta(busqueda)
         {
-            var query = "SELECT DISTINCT ?sub WHERE { ?sub ?pred ?obj. FILTER (regex(?obj, "+"'"+ busqueda +"'"+")).}";
-            queryService.getResults($scope, query);            
+            var query = `
+            PREFIX GR: <http://purl.org/goodrelations/v1#>
+            PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
+            PREFIX WILDLIFE: <http://purl.org/ontology/wo/>
+            PREFIX RDFS: <http://www.w3.org/2000/01/rdf-schema#>
+            SELECT ?sub 
+                WHERE {
+                    {?sub GR:name '`+busqueda+`'@es .}
+                    UNION
+                    {?sub RDFS:label '`+busqueda+`'@es .}
+                    UNION
+                    {?sub WILDLIFE:commonName '`+busqueda+`'@es .}
+                    UNION 
+                    {?sub FOAF:name '`+busqueda+`'@es .}
+                }`
+            queryService.getBusquedaKeyWord($scope, query); 
+            console.log(query)           
         }
 
         consulta(valor);
