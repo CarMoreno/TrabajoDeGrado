@@ -20,39 +20,33 @@ ecolodApp.factory('mapService', ['queryService',
 	                        }`
 				queryService.getDataMarkers(scope_marker, query)
 				serviceMap.getOptionsMarker(scope_marker, categoria)
-				serviceMap.getEvents(scope_marker, scope_window)
 			}
 		}
 
 		serviceMap.getOptionsMarker = function(scope_marker, categoria) {
 			switch(categoria.toLowerCase()) {
 				case "alojamientos":
-					scope_marker.options = {icon: 'dist/img/hotel.png'}
+					scope_marker.icon = 'dist/img/hotel.png'
 					break
 				case "empresas":
-					scope_marker.options = {icon: 'dist/img/empresa.png'}
+					scope_marker.icon = 'dist/img/empresa.png'
 					break
 				case "restaurantes":
-					scope_marker.options = {icon: 'dist/img/restaurante.png'}
+					scope_marker.icon = 'dist/img/restaurante.png'
 					break
-				// case "lugares":
-				// 	scope_marker.options = {icon: 'dist/img/lugares.png'}
+				case "lugares":
+					scope_marker.icon = 'dist/img/lugares.png'
 			}
 		}
 
-		serviceMap.getEvents = function(scope_marker, scope_window) {
-
-			scope_window.show = false
-			scope_marker.events = {
-				click: function (marker, eventName, model) {
-					console.log('Click marker')
-					scope_window.model = model
-					scope_window.show = true
-
-				}
+		serviceMap.getPath = function(ruta, scope_marker) {
+			switch(ruta.toLowerCase()) {
+				case "rutamaiz":
+					scope_marker.origin = {lat:4.0632293, lng: -76.1954149}
+          			scope_marker.destination = {lat:4.084143, lng: -76.2395161}
+          			break
 			}
-
-		}//fin getEvents
+		}
 		return serviceMap
 	}
 ])

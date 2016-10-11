@@ -100,9 +100,8 @@ ecolodApp.factory('queryService',
                 var geocoder = new google.maps.Geocoder()
                 geocoder.geocode({address: results[0].direccion.value}, function(data, status) {
                     if(status == google.maps.GeocoderStatus.OK){
-                        var lat = data[0].geometry.location.lat()
-                        var lng = data[0].geometry.location.lng()
-                        scope_marker.coords = {latitude: lat, longitude: lng}
+                        scope_marker.lat = data[0].geometry.location.lat()
+                        scope_marker.lng = data[0].geometry.location.lng()
                     }
                 })
 

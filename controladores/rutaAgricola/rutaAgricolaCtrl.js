@@ -1,17 +1,17 @@
 var app = angular.module('EcolodApp')
-app.controller('rutaAgricolaCtrl', ['$scope', '$route', '$http', '$uibModal', 'modalService', 'queryService',
-    function($scope, $route, $http, $uibModal, modalService, queryService) 
+app.controller('rutaAgricolaCtrl', ['$scope', '$route', '$http', '$uibModal', 'modalService', 'queryService', 'mapService',
+    function($scope, $route, $http, $uibModal, modalService, queryService, mapService) 
     {
-        qdefault = 'PREFIX UMBEL: <http://umbel.org/umbel#> SELECT DISTINCT ?sub WHERE { ?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/RutaDelAnilloAgricola/Lugares>. }'
-        queryService.setArray(qdefault, "Lugares", $scope)
         $scope.ruta = $route;
-        $scope.map = { center: { latitude: 4.0744162, longitude: -76.2051463 }, zoom: 13 };
         $scope.marker = {}
         $scope.window = {}
         $scope.ruta = $route;
         $scope.rutaCategorias = {'fauna':'pages/rutaAgricola/fauna.html', 'flora':'pages/rutaAgricola/flora.html', 'alojamientos':'pages/rutaAgricola/alojamientos.html',
         'restaurantes':'pages/rutaAgricola/restaurantes.html', 'lugares':'pages/rutaAgricola/lugares.html', 'empresas':'pages/rutaAgricola/empresas.html',
         'eventos': 'pages/rutaAgricola/eventos.html' }
+        qdefault = 'PREFIX UMBEL: <http://umbel.org/umbel#> SELECT DISTINCT ?sub WHERE { ?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/RutaDelAnilloAgricola/Lugares>. }'
+        queryService.setArray(qdefault, "Lugares", $scope)
+        mapService.getPath('RutaMaiz', $scope.marker)
         $scope.open = function(parametro, categoria, ruta) {
             //
             var instanciaModal = $uibModal.open({

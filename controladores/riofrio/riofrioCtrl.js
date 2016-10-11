@@ -1,15 +1,15 @@
 var app = angular.module('EcolodApp')
-app.controller('riofrioCtrl', ['$scope', '$route', '$http', '$uibModal', 'modalService', 'queryService',
-    function($scope, $route, $http, $uibModal, modalService, queryService) 
+app.controller('riofrioCtrl', ['$scope', '$route', '$http', '$uibModal', 'modalService', 'queryService', 'mapService',
+    function($scope, $route, $http, $uibModal, modalService, queryService, mapService) 
     {
         qdefault = 'PREFIX UMBEL: <http://umbel.org/umbel#> SELECT DISTINCT ?sub WHERE { ?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/Riofrio/Lugares>. }'
-        queryService.setArray(qdefault, "Lugares", $scope)
         $scope.ruta = $route
-        $scope.map = { center: { latitude: 4.1566407, longitude: -76.2921399 }, zoom: 15 };
         $scope.marker = {}
         $scope.window = {}
         $scope.rutaCategorias = {'fauna':'pages/riofrio/fauna.html', 'flora':'pages/riofrio/flora.html', 'alojamientos':'pages/riofrio/alojamientos.html',
         'restaurantes':'pages/riofrio/restaurantes.html', 'lugares':'pages/riofrio/lugares.html', 'empresas':'pages/riofrio/empresas.html', 'eventos': 'pages/riofrio/eventos.html' }
+        queryService.setArray(qdefault, "Lugares", $scope)
+        
         $scope.open = function(parametro, categoria, ruta) {
             //
             var instanciaModal = $uibModal.open({

@@ -8,6 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>DataEcoCev App</title>
+  <!-- Iconos usados disponibkes en Maps Icons Collection https://mapicons.mapsmarker.com -->
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -65,7 +66,6 @@ desired effect
 <div ng-view></div>
 <!-- REQUIRED JS SCRIPTS -->
 
-<script src="libs/lodash.min.js"></script>
 <!-- jQuery 2.2.0 -->
 <script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <script src="plugins/jQueryUI/jquery-ui.min.js"></script>
@@ -83,12 +83,11 @@ desired effect
 <script src="libs/ui-bootstrap-tpls-2.1.3.min.js"></script>
 <!-- Main -->
 <script src="main.js"></script>
-<!--Mapas-->
-<script src="libs/angular-simple-logger.min.js"></script>
-<script src="libs/angular-google-maps.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
 <script src="libs/angular-highlightjs.min.js"></script>
-
+<!--Mapas-->
+<script src="libs/ng-map.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBE366Gf2CvuA38uaZBSVgQr5hy4IVse9Y" type="text/javascript"></script>
 <!-- <script src="factorias/servicioModal.js"></script> -->
 <!-- Controladores -->
 <script src="controladores/inicioCtrl.js"></script>
@@ -100,6 +99,7 @@ desired effect
 <script src="controladores/modalCtrl.js"></script>
 <script src="controladores/tabsCtrl.js"></script>
 <script src="controladores/resultadoCtrl.js"></script>
+<script src="controladores/endpointCtrl.js"></script>
 <!-- Factorias -->
 <script src="factorias/servicioHttp.js"></script>
 <script src="factorias/servicioVideo.js"></script>

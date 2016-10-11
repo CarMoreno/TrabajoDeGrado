@@ -19,7 +19,7 @@
 
     <!-- ================ (CONTENIDO DE LA PAGINA) ============================-->
     <section class="content">
-      <div class="row">
+      <div class="row" ng-controller="tabsCtrl">
         <!-- /.col -->
         <div class="col-md-7 col-lg-7 col-sm-7">
           <!-- box -->
@@ -35,27 +35,39 @@
             <!-- /.box-header -->
             <div class="box-body div-frame">
               <div id="mapa">
-                <ui-gmap-google-map ng-if="map.center" center='map.center'  zoom='map.zoom'>
-                  <ui-gmap-window
-                    show="window.show"
-                    templateUrl="'window.html'"
-                    templateParameter="window">    
-                  </ui-gmap-window>
-                  <ui-gmap-marker 
-                    coords='marker.coords' 
-                    idkey='0' 
-                    options='marker.options'
-                    events='marker.events'>
-                    <!-- events='marker.events' -->
-                  </ui-gmap-marker>
-                </ui-gmap-google-map>
+                <ng-map zoom="14" center="4.0744162, -76.2051463" style="height:100%">
+                  <marker 
+                    position="{{marker.lat}} , {{marker.lng}}"
+                    icon = "{{marker.icon}}"
+                    on-click="map.showInfoWindow(event, 'bar')"
+                  >
+                  </marker>
+
+                  <directions 
+                    draggable="true"
+                    travel-mode="DRIVING"
+                    origin="{{marker.origin}}"
+                    destination="{{marker.destination}}">
+                  </directions>
+
+                  <info-window id="bar" max-width="200">
+                    <div ng-non-bindable>
+                      <div id="siteNotice"></div>
+                      <h1 id="firstHeading" class="firstHeading">{{title}}</h1>
+                      <div id="bodyContent">
+                        <p>{{description}}</p>
+                        <p>{{direction}}</p>
+                      </div>
+                    </div>
+                  </info-window>
+                </ng-map> 
               </div>
             </div>
             <!-- /.box-body templateUrl="'page/infowindow.tpl.html'"-->
           </div>
           <!-- /.box -->
         </div>
-        <div class="col-md-5 col-lg-5 col-sm-5" ng-controller="tabsCtrl">
+        <div class="col-md-5 col-lg-5 col-sm-5">
           <!-- box -->
           <div class="box box-success box-solid arrastrar"> 
             <div class="box-header with-border">

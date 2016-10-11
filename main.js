@@ -1,13 +1,6 @@
-var ecolodApp = angular.module('EcolodApp', ['ngRoute', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'uiGmapgoogle-maps', 'hljs'])
-ecolodApp.config(function(uiGmapGoogleMapApiProvider, hljsServiceProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyBE366Gf2CvuA38uaZBSVgQr5hy4IVse9Y',
-        v: '3.20', //defaults to latest 3.X anyhow
-        libraries: 'weather,geometry,visualization'
-    });
-
+var ecolodApp = angular.module('EcolodApp', ['ngRoute', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'ngMap', 'hljs'])
+ecolodApp.config(function(hljsServiceProvider) {
     hljsServiceProvider.setOptions({
-        
     })
 })
 // IP Privada http://192.168.14.2:3030/ecoLOD/query?query=
@@ -54,7 +47,7 @@ ecolodApp.config(function($routeProvider) {
         })
         .when('/endpoint', {
             templateUrl : 'pages/endpoint.html',
-            controller  : '',
+            controller  : 'endpointCtrl',
             paginaActiva: '/endpoint'
         })
         .when('/resultado', {
@@ -64,7 +57,7 @@ ecolodApp.config(function($routeProvider) {
         })
         .when('/terminos', {
             templateUrl : 'pages/terminos.html',
-            controller  : '', 
+            controller  : 'endpointCtrl', 
             paginaActiva: '/terminos'
         })
         .otherwise({
