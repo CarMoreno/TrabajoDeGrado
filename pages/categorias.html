@@ -1,4 +1,8 @@
 <uib-tabset>
+  <uib-tab data-toggle="tooltip" data-placement="top" title="General" ng-click="tabRuta(ruta.current.loadedTemplateUrl)">
+    <uib-tab-heading><i class="fa fa-book"></i></uib-tab-heading>
+    <ng-include src="rutaCategorias.ruta"></ng-include>
+  </uib-tab>
   <uib-tab data-toggle="tooltip" data-placement="top" title="Lugares" ng-click="tabElegida('Lugares', ruta.current.loadedTemplateUrl)">
   	<uib-tab-heading><i class="fa fa-bicycle"></i></uib-tab-heading>
   	<ng-include src="rutaCategorias.lugares"></ng-include>

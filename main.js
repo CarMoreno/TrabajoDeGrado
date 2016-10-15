@@ -1,7 +1,8 @@
 var ecolodApp = angular.module('EcolodApp', ['ngRoute', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'ngMap', 'hljs'])
-ecolodApp.config(function(hljsServiceProvider) {
+ecolodApp.config(function(hljsServiceProvider, $sceProvider) {
     hljsServiceProvider.setOptions({
     })
+    $sceProvider.enabled(false);
 })
 // IP Privada http://192.168.14.2:3030/ecoLOD/query?query=
 // IP Publica http://190.14.254.238:3030/ecoLOD/query?query=

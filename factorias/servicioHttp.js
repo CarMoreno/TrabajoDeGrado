@@ -1,9 +1,4 @@
 var ecolodApp = angular.module('EcolodApp')
-//ecolodApp.constant("endpoint", "http://localhost:3030/ecoLOD/query?query=")
-//IP Privada 
-//ecolodApp.constant("endpoint", "http://192.168.14.2:3030/ecoLOD/query?query=")
-//IP Publica 
-//http://192.168.14.2
 ecolodApp.factory('queryService',
     function($http, endpoint)
     {
@@ -61,29 +56,36 @@ ecolodApp.factory('queryService',
                 serviceQuery.getResults(query, $scope.categorias.eventos);
             }
 
-            else {
+            else if (tabName == "Empresas") {
                 $scope.categorias.empresas = []
                 serviceQuery.getResults(query, $scope.categorias.empresas);   
+            }
+            else { //si no es ninguna de las categorias, es porque es una ruta
+                $scope.categorias.ruta = []
+                serviceQuery.getOne(query, $scope.categorias.ruta);
             }
             
         }    
 
         serviceQuery.getOne = function(query, array) {
-            $http({
-                url: endpoint + escape(query),
-                headers: {'Content-type' : 'application/x-www-form-urlencoded',
-                    'Accept' : 'application/sparql-results+json'},
-                method: "GET",
-                params: {format: "json"}    
-            })
-            .success(function(data, status, headers, config) {
-                results = data.results.bindings
-                array.push(results)
-                //return array
-            })
-            .error(function(data, status, headers, config) {
-                console.log("Error ... "+status)
-            })
+            if (array) {
+                $http({
+                    url: endpoint + escape(query),
+                    headers: {'Content-type' : 'application/x-www-form-urlencoded',
+                        'Accept' : 'application/sparql-results+json'},
+                    method: "GET",
+                    params: {format: "json"}    
+                })
+                .success(function(data, status, headers, config) {
+                    console.log(query)
+                    results = data.results.bindings
+                    array.push(results)
+                    console.log(results)
+                })
+                .error(function(data, status, headers, config) {
+                    console.log("Error ... "+status)
+                })
+            }
         }
 
         serviceQuery.getDataMarkers = function(scope_marker, query) {
@@ -135,7 +137,7 @@ ecolodApp.factory('queryService',
             })
 
             .success(function(data, status, headers, config) 
-            {
+            {   console.log(data)
                 results = data.results.bindings;
                 querys = [];
                 //console.log(results)

@@ -7,7 +7,8 @@ app.controller('riofrioCtrl', ['$scope', '$route', '$http', '$uibModal', 'modalS
         $scope.marker = {}
         $scope.window = {}
         $scope.rutaCategorias = {'fauna':'pages/riofrio/fauna.html', 'flora':'pages/riofrio/flora.html', 'alojamientos':'pages/riofrio/alojamientos.html',
-        'restaurantes':'pages/riofrio/restaurantes.html', 'lugares':'pages/riofrio/lugares.html', 'empresas':'pages/riofrio/empresas.html', 'eventos': 'pages/riofrio/eventos.html' }
+        'restaurantes':'pages/riofrio/restaurantes.html', 'lugares':'pages/riofrio/lugares.html', 'empresas':'pages/riofrio/empresas.html',
+        'eventos': 'pages/riofrio/eventos.html', 'ruta': 'pages/riofrio/general.html' }
         queryService.setArray(qdefault, "Lugares", $scope)
         
         $scope.open = function(parametro, categoria, ruta) {

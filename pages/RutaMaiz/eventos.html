@@ -22,7 +22,7 @@
                                   ng-if="eventos.pred.value.search('label') != -1">
           <a href=""  class="product-title">{{eventos.obj.value}}</a>
               <span class="product-description" ng-repeat="eventos in cards"
-                                  ng-if="eventos.pred.value.search('label') != -1">
+                                  ng-if="eventos.pred.value.search('comment') != -1">
                 {{eventos.obj.value}}
               </span>
         </div>

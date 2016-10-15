@@ -7,14 +7,11 @@ app.controller('rutaMaizCtrl', ['$scope', '$route', '$http', '$uibModal', 'modal
         })
         
         $scope.marker = {}
-        $scope.window = {}
+        $scope.window = []
         $scope.ruta = $route;
         $scope.rutaCategorias = {'fauna':'pages/rutaMaiz/fauna.html', 'flora':'pages/rutaMaiz/flora.html', 'alojamientos':'pages/rutaMaiz/alojamientos.html',
         'restaurantes':'pages/rutaMaiz/restaurantes.html', 'lugares':'pages/rutaMaiz/lugares.html', 'empresas':'pages/rutaMaiz/empresas.html',
-        'eventos': 'pages/rutaMaiz/eventos.html' }   
-        qdefault = 'PREFIX UMBEL: <http://umbel.org/umbel#> SELECT DISTINCT ?sub WHERE { ?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/RutaDelMaiz/Lugares>. }'
-        
-        queryService.setArray(qdefault, "Lugares", $scope)
+        'eventos': 'pages/rutaMaiz/eventos.html', 'ruta': 'pages/rutaMaiz/general.html' }   
         mapService.getPath('RutaMaiz', $scope.marker)
 
         $scope.open = function(parametro, categoria, ruta) {

@@ -20,39 +20,6 @@
     <!-- ================ (CONTENIDO DE LA PAGINA) ============================-->
     <section class="content">
       <div class="row">
-        <!-- /.col -->
-        <div class="col-md-7 col-lg-7 col-sm-7">
-          <!-- box -->
-          <div class="box box-success box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Recorrido</h3>
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
-              <!-- /.box-tools -->
-            </div>
-             <div class="box-body div-frame">
-              <div id="mapa">
-                <ng-map zoom="14" center="4.0744162, -76.2051463" style="height:100%">
-                  <marker 
-                    position="{{marker.lat}} , {{marker.lng}}"
-                    icon = "{{marker.icon}}"
-                  >
-                  </marker>
-                  <directions 
-                    draggable="true"
-                    travel-mode="DRIVING"
-                    origin="{{marker.origin}}"
-                    destination="{{marker.destination}}">
-                  </directions>
-                </ng-map> 
-              </div>
-            </div>
-          </div>
-          <!-- /.box -->
-        </div>
-<!-- /.col -->
         <div class="col-md-5 col-lg-5 col-sm-5" ng-controller="tabsCtrl">
           <!-- box -->
           <div class="box box-success box-solid arrastrar"> 
@@ -86,7 +53,39 @@
           </div>
           <!-- /.box -->
         </div>
-        <!-- /.col -->       
+        <!-- /.col -->  
+        <!-- /.col -->
+        <div class="col-md-7 col-lg-7 col-sm-7">
+          <!-- box -->
+          <div class="box box-success box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Recorrido</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+             <div class="box-body div-frame">
+              <div id="mapa">
+                <ng-map zoom="14" center="4.0744162, -76.2051463" style="height:100%">
+                  <marker 
+                    position="{{marker.lat}} , {{marker.lng}}"
+                    icon = "{{marker.icon}}"
+                  >
+                  </marker>
+                  <directions 
+                    travel-mode="DRIVING"
+                    origin="{{marker.origin}}"
+                    destination="{{marker.destination}}">
+                  </directions>
+                </ng-map> 
+              </div>
+            </div>
+          </div>
+          <!-- /.box -->
+        </div>
+             
       </div>
     </section>
     <!-- ======================= (FIN CONTENIDO DE LA PAGINA)=========================-->

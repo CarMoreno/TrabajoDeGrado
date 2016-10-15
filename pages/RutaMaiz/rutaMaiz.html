@@ -19,55 +19,8 @@
 
     <!-- ================ (CONTENIDO DE LA PAGINA) ============================-->
     <section class="content">
-      <div class="row" ng-controller="tabsCtrl">
-        <!-- /.col -->
-        <div class="col-md-7 col-lg-7 col-sm-7">
-          <!-- box -->
-          <div class="box box-success box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Recorrido</h3>
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
-              <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body div-frame">
-              <div id="mapa">
-                <ng-map zoom="14" center="4.0744162, -76.2051463" style="height:100%">
-                  <marker 
-                    position="{{marker.lat}} , {{marker.lng}}"
-                    icon = "{{marker.icon}}"
-                    on-click="map.showInfoWindow(event, 'bar')"
-                  >
-                  </marker>
-
-                  <directions 
-                    draggable="true"
-                    travel-mode="DRIVING"
-                    origin="{{marker.origin}}"
-                    destination="{{marker.destination}}">
-                  </directions>
-
-                  <info-window id="bar" max-width="200">
-                    <div ng-non-bindable>
-                      <div id="siteNotice"></div>
-                      <h1 id="firstHeading" class="firstHeading">{{title}}</h1>
-                      <div id="bodyContent">
-                        <p>{{description}}</p>
-                        <p>{{direction}}</p>
-                      </div>
-                    </div>
-                  </info-window>
-                </ng-map> 
-              </div>
-            </div>
-            <!-- /.box-body templateUrl="'page/infowindow.tpl.html'"-->
-          </div>
-          <!-- /.box -->
-        </div>
-        <div class="col-md-5 col-lg-5 col-sm-5">
+      <div class="row">
+        <div class="col-md-5 col-lg-5 col-sm-5" ng-controller="tabsCtrl">
           <!-- box -->
           <div class="box box-success box-solid arrastrar"> 
             <div class="box-header with-border">
@@ -99,7 +52,52 @@
           </div>
           <!-- /.box -->
         </div>
-<!-- /.col -->      
+        <!-- col -->
+        <!-- /.col -->
+        <div class="col-md-7 col-lg-7 col-sm-7">
+          <!-- box -->
+          <div class="box box-success box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Recorrido</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body div-frame">
+              <div id="mapa">
+                <ng-map zoom="14" center="4.0744162, -76.2051463" style="height:100%">
+                  <marker 
+                    position="{{marker.lat}} , {{marker.lng}}"
+                    icon = "{{marker.icon}}"
+                    on-click="map.showInfoWindow(event, 'bar')"
+                  >
+                  </marker>
+
+                  <directions 
+                    travel-mode="DRIVING"
+                    origin="{{marker.origin}}"
+                    destination="{{marker.destination}}">
+                  </directions>
+
+                  <info-window id="bar" max-width="200" template="'pages/infowindow.html'">
+                    <!-- <div ng-non-bindable>
+                      <div id="siteNotice"></div>
+                      <h1 id="firstHeading" class="firstHeading"></h1>
+                      <div id="bodyContent">
+                        <p>{{window}}</p>
+                      </div>
+                    </div> -->
+                  </info-window>
+                </ng-map> 
+              </div>
+            </div>
+            <!-- /.box-body templateUrl="'page/infowindow.tpl.html'"-->
+          </div>
+          <!-- /.box -->
+        </div>     
       </div><!-- .row -style="bottom: 450px; left:590px;-->
       <!-- <div class="row"> -->
         

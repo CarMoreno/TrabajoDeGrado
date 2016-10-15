@@ -62,7 +62,7 @@ ecolodApp.factory('modalService', ['queryService',
 								}`
 					break
 				case "empresas":
-				case "restaurantes":	
+				case "restaurantes":
 					query = `PREFIX UMBEL: <http://umbel.org/umbel#> 
 							PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
 							PREFIX VCARD: <http://www.w3.org/2006/vcard/ns#> 
@@ -78,8 +78,36 @@ ecolodApp.factory('modalService', ['queryService',
 								?obj2 GR:opens ?abre .
 								?obj2 GR:closes ?cierra .
 							}`
-					break		
+					break
+				case "eventos":
+					query = `PREFIX EVENT: <http://purl.org/NET/c4dm/event.owl#>
+							PREFIX TIME: <http://purl.org/NET/c4dm/timeline.owl#>
+							PREFIX RDFS: <http://www.w3.org/2000/01/rdf-schema#>
+							PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
+							PREFIX UMBEL: <http://umbel.org/umbel#>
+							SELECT ?fecha ?duracion ?lugar
+							WHERE {
+								?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/`+ruta+"/"+categoria+`>. 
+								?sub FOAF:depiction <`+parametro+`> .
+								?sub EVENT:time ?obj1 .
+								?obj1 TIME:at ?fecha .
+								?obj1 TIME:duration ?duracion .
 
+								?sub EVENT:place ?obj2 .
+								?obj2 RDFS:label ?lugar .
+							}`
+					break					
+				case "lugares":
+					query = `PREFIX UMBEL: <http://umbel.org/umbel#> 
+							PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
+							PREFIX VCARD: <http://www.w3.org/2006/vcard/ns#> 
+							SELECT ?direccion 
+							WHERE {
+								?sub UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/`+ruta+"/"+categoria+`>.
+								?sub FOAF:depiction <`+parametro+`>. 
+								?sub VCARD:adr ?obj1 .
+								?obj1 VCARD:street-address ?direccion .
+							}`			
 			}
 			//console.log(query)	
 			queryService.getOne(query, $scope.otrosDatos)

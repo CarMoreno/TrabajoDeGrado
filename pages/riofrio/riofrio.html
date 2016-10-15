@@ -20,6 +20,39 @@
     <!-- ================ (CONTENIDO DE LA PAGINA) ============================-->
     <section class="content">
       <div class="row">
+        <div class="col-md-5 col-lg-5 col-sm-5" ng-controller="tabsCtrl">
+          <!-- box -->
+          <div class="box box-success box-solid arrastrar"> 
+            <div class="box-header with-border">
+              <div class="row">
+                <div class="col-md-3"><h3 class="box-title">Categorías</h3></div>
+                <div class="col-md-8">
+                  <!-- barra de busqueda -->
+                  <form name="form" novalidate">
+                    <div class="form-search input-group input-group-sm" 
+                         ng-class="{ 'has-error' : form.busqueda.$invalid && !form.busqueda.$pristine }">
+                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        <input type="text" name="busqueda" class="form-control input-lg" placeholder="Empieza a escribir..."ng-model="search" required>
+                    </div>
+                  </form>
+                  <!-- fin barra de busqueda -->
+                </div>
+              </div>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+          <div class="box-body text-justify" ng-control="riofrioCtrl">
+            <ng-include src="'pages/categorias.html'"></ng-include>
+          </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col --> 
         <!-- /.col -->
         <div class="col-md-7 col-lg-7 col-sm-7">
           <!-- box -->
@@ -53,41 +86,7 @@
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-        </div>
-<!-- /.col -->
-        <div class="col-md-5 col-lg-5 col-sm-5" ng-controller="tabsCtrl">
-          <!-- box -->
-          <div class="box box-success box-solid arrastrar"> 
-            <div class="box-header with-border">
-              <div class="row">
-                <div class="col-md-3"><h3 class="box-title">Categorías</h3></div>
-                <div class="col-md-8">
-                  <!-- barra de busqueda -->
-                  <form name="form" novalidate">
-                    <div class="form-search input-group input-group-sm" 
-                         ng-class="{ 'has-error' : form.busqueda.$invalid && !form.busqueda.$pristine }">
-                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                        <input type="text" name="busqueda" class="form-control input-lg" placeholder="Empieza a escribir..."ng-model="search" required>
-                    </div>
-                  </form>
-                  <!-- fin barra de busqueda -->
-                </div>
-              </div>
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
-              <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-          <div class="box-body text-justify" ng-control="riofrioCtrl">
-            <ng-include src="'pages/categorias.html'"></ng-include>
-          </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->       
+        </div>      
       </div>
     </section>
     <!-- ======================= (FIN CONTENIDO DE LA PAGINA)=========================-->

@@ -9,9 +9,9 @@ app.controller('rutaOrienteCtrl', ['$scope', '$route', '$http', '$uibModal', 'mo
         $scope.window = {}
         $scope.rutaCategorias = {'fauna':'pages/rutaOriente/fauna.html', 'flora':'pages/rutaOriente/flora.html', 'alojamientos':'pages/rutaOriente/alojamientos.html',
         'restaurantes':'pages/rutaOriente/restaurantes.html', 'lugares':'pages/rutaOriente/lugares.html', 'empresas':'pages/rutaOriente/empresas.html',
-        'eventos': 'pages/rutaOriente/eventos.html' }   
+        'eventos': 'pages/rutaOriente/eventos.html', 'ruta': 'pages/rutaOriente/general.html' }   
         queryService.setArray(qdefault, "Lugares", $scope)
-        mapService.getPath('RutaMaiz', $scope.marker)
+        mapService.getPath('RutaOriente', $scope.marker)
         $scope.open = function(parametro, categoria, ruta) {
             //
             var instanciaModal = $uibModal.open({

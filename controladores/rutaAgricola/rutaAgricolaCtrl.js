@@ -8,10 +8,10 @@ app.controller('rutaAgricolaCtrl', ['$scope', '$route', '$http', '$uibModal', 'm
         $scope.ruta = $route;
         $scope.rutaCategorias = {'fauna':'pages/rutaAgricola/fauna.html', 'flora':'pages/rutaAgricola/flora.html', 'alojamientos':'pages/rutaAgricola/alojamientos.html',
         'restaurantes':'pages/rutaAgricola/restaurantes.html', 'lugares':'pages/rutaAgricola/lugares.html', 'empresas':'pages/rutaAgricola/empresas.html',
-        'eventos': 'pages/rutaAgricola/eventos.html' }
+        'eventos': 'pages/rutaAgricola/eventos.html', 'ruta': 'pages/rutaAgricola/general.html' }
         qdefault = 'PREFIX UMBEL: <http://umbel.org/umbel#> SELECT DISTINCT ?sub WHERE { ?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/RutaDelAnilloAgricola/Lugares>. }'
         queryService.setArray(qdefault, "Lugares", $scope)
-        mapService.getPath('RutaMaiz', $scope.marker)
+        mapService.getPath('Anillo', $scope.marker)
         $scope.open = function(parametro, categoria, ruta) {
             //
             var instanciaModal = $uibModal.open({
