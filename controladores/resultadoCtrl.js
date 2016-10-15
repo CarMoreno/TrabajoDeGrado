@@ -7,7 +7,7 @@ ecolodApp.controller('resultadoCtrl', ['$scope', '$route', 'queryService',
 
         function consulta(busqueda)
         {
-            //busqueda = busqueda.toUpperCase()
+            busqueda = busqueda.toUpperCase()
             var query = `
             PREFIX GR: <http://purl.org/goodrelations/v1#>
             PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
@@ -23,10 +23,10 @@ ecolodApp.controller('resultadoCtrl', ['$scope', '$route', 'queryService',
                     UNION 
                     {?sub FOAF:name ?obj .}
 
-                    FILTER(regex(str(?obj),`+busqueda+`))
+                    FILTER(regex(str(?obj), '`+busqueda+`'))
                 }`
             queryService.getBusquedaKeyWord($scope, query); 
-            //console.log(query)           
+            console.log(query)           
         }
 
         consulta(valor);

@@ -76,7 +76,7 @@
                   <a class="btn btn-link" href={{resultado.obj.value}}><i class="fa fa-street-view fa-2x"></i></a>
                 </span>
                 <span class='timestamp' ng-repeat="resultado in cards"
-                      ng-if="resultado.obj.value.search('.mp4') != -1 resultado.obj.value.search('No disponible') == -1">
+                      ng-if="resultado.obj.value.search('youtube') != -1 resultado.obj.value.search('No disponible') == -1">
                   <a class="btn btn-link" href={{resultado.obj.value}}>Video</a>
                 </span>
               </div>
