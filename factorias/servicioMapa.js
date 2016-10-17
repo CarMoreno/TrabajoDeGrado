@@ -8,6 +8,7 @@ ecolodApp.factory('mapService', ['queryService',
 		}
 
 		serviceMap.getDataMarkers = function(categoria, parametro, scope_marker, scope_window) {
+
 			if (parametro && (categoria == "Alojamientos" || categoria=="Restaurantes" || categoria=="Eventos" || categoria=="Empresas" || categoria=="Lugares")) {
 				console.log(categoria)
 				if (categoria == "Eventos") {
@@ -28,9 +29,14 @@ ecolodApp.factory('mapService', ['queryService',
 					query = `PREFIX UMBEL: <http://umbel.org/umbel#>
 		                    PREFIX VCARD: <http://www.w3.org/2006/vcard/ns#>
 		                    PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
-		                    SELECT ?direccion 
+		                    PREFIX GR: <http://purl.org/goodrelations/v1#>
+		                    SELECT ?direccion ?nombre 
 		                        WHERE {
-		                            ?sub FOAF:depiction <`+parametro+`> . 
+		                            {?sub GR:name ?nombre .}
+		                            UNION
+		                            {?sub FOAF:name ?nombre .}
+		                             
+		                            ?sub FOAF:depiction <`+parametro+`> .
 		                            ?sub VCARD:adr ?obj1 .
 		                            ?obj1 VCARD:street-address ?direccion .
 		                        }`

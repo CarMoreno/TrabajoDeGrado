@@ -72,6 +72,7 @@
                   <marker 
                     position="{{marker.lat}} , {{marker.lng}}"
                     icon = "{{marker.icon}}"
+                    on-click="map.showInfoWindow(event, 'bar')"
                   >
                   </marker>
                   <directions 
@@ -79,6 +80,9 @@
                     origin="{{marker.origin}}"
                     destination="{{marker.destination}}">
                   </directions>
+
+                  <info-window id="bar" max-width="200" template="'pages/infowindow.html'">
+                  </info-window>
                 </ng-map> 
               </div>
             </div>

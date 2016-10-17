@@ -20,6 +20,7 @@
 
     <!-- ===================CONTENIDO ===================-->
     <section class="content">
+      <p>Se encontraron {{datos.length}} resultados</p>
       <div class="alert alert-success" ng-if="datos.length == 0">
       <br><br><br><br><br>
         <h2 class="alert-heading">
@@ -36,7 +37,6 @@
         <p class="m-b-0">Gracias por usar nuestra plataforma</p>
         <br><br><br><br><br><br>
       </div>
-      
       <!--Cartas-->
       <div class="row"  >
         <div class="col-md-4 col-sm-3" dir-paginate="cards in datos | itemsPerPage:3">

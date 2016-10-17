@@ -2,12 +2,8 @@ var app = angular.module('EcolodApp')
 app.controller('rutaMaizCtrl', ['$scope', '$route', '$http', '$uibModal', 'modalService', 'queryService', 'mapService', 'NgMap',
     function($scope, $route, $http, $uibModal, modalService, queryService, mapService, NgMap) 
     {
-        NgMap.getMap().then(function(map) {
-            $scope.map = map;
-        })
-        
         $scope.marker = {}
-        $scope.window = []
+        $scope.window = {}
         $scope.ruta = $route;
         $scope.rutaCategorias = {'fauna':'pages/rutaMaiz/fauna.html', 'flora':'pages/rutaMaiz/flora.html', 'alojamientos':'pages/rutaMaiz/alojamientos.html',
         'restaurantes':'pages/rutaMaiz/restaurantes.html', 'lugares':'pages/rutaMaiz/lugares.html', 'empresas':'pages/rutaMaiz/empresas.html',

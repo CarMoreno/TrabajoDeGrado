@@ -1,7 +1,8 @@
 <div ng-non-bindable >
   <div id="siteNotice"></div>
-  <h1 id="firstHeading" class="firstHeading"></h1>
+  <h3 id="firstHeading" class="firstHeading">{{window.data[0].nombre.value}}</h3>
   <div id="bodyContent">
-    <p>{{window}}</p>
+    <p>{{window.data[0].direccion.value}}
+    </p>
   </div>
 </div>

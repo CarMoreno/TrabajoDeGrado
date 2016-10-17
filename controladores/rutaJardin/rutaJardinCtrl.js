@@ -8,9 +8,6 @@ app.controller('rutaJardinCtrl', ['$scope', '$route', '$http', '$uibModal', 'mod
         $scope.rutaCategorias = {'fauna':'pages/rutaJardin/fauna.html', 'flora':'pages/rutaJardin/flora.html', 'alojamientos':'pages/rutaJardin/alojamientos.html',
         'restaurantes':'pages/rutaJardin/restaurantes.html', 'lugares':'pages/rutaJardin/lugares.html', 'empresas':'pages/rutaJardin/empresas.html',
         'eventos': 'pages/rutaJardin/eventos.html', 'ruta': 'pages/rutaJardin/general.html' }
-        qdefault = 'PREFIX UMBEL: <http://umbel.org/umbel#> SELECT DISTINCT ?sub WHERE { ?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/RutaDelJardinBotanico/Lugares>. }'
-        
-        queryService.setArray(qdefault, "Lugares", $scope)
         mapService.getPath('Jardin', $scope.marker)
 
         $scope.open = function(parametro, categoria, ruta) {

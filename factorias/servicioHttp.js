@@ -56,19 +56,15 @@ ecolodApp.factory('queryService',
                 serviceQuery.getResults(query, $scope.categorias.eventos);
             }
 
-            else if (tabName == "Empresas") {
+            else{//empresas
                 $scope.categorias.empresas = []
                 serviceQuery.getResults(query, $scope.categorias.empresas);   
-            }
-            else { //si no es ninguna de las categorias, es porque es una ruta
-                $scope.categorias.ruta = []
-                serviceQuery.getOne(query, $scope.categorias.ruta);
             }
             
         }    
 
-        serviceQuery.getOne = function(query, array) {
-            if (array) {
+        serviceQuery.getOne = function(query, scope_window) {
+            if (scope_window) {
                 $http({
                     url: endpoint + escape(query),
                     headers: {'Content-type' : 'application/x-www-form-urlencoded',
@@ -77,10 +73,8 @@ ecolodApp.factory('queryService',
                     params: {format: "json"}    
                 })
                 .success(function(data, status, headers, config) {
-                    console.log(query)
                     results = data.results.bindings
-                    array.push(results)
-                    console.log(results)
+                    scope_window.data = results
                 })
                 .error(function(data, status, headers, config) {
                     console.log("Error ... "+status)
