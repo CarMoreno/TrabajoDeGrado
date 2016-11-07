@@ -38,38 +38,34 @@ ecolodApp.factory('modalService', ['queryService',
 		//  * @param  {[type]} $scope    [obj]
 		 
 		modalService.selectDataCustom = function(categoria, ruta, parametro, $scope) {
-			$scope.otrosDatos = []
+			$scope.otrosDatos = {}
 			switch(categoria.toLowerCase()){
 				case "alojamientos":	
-					query = `PREFIX UMBEL: <http://umbel.org/umbel#> 
-							PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
+					query = `PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
 							PREFIX VCARD: <http://www.w3.org/2006/vcard/ns#> 
 							PREFIX ACCO: <http://purl.org/acco/ns#>
 							PREFIX GR: <http://purl.org/goodrelations/v1#>
 							SELECT ?direccion ?numHabitaciones ?numCamas
 								WHERE {
-									?subj  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/`+ruta+"/"+categoria+`>. 
 									?subj FOAF:depiction <`+parametro+`> .
-									?subj VCARD:adr ?obj1 .
-									?obj2 ACCO:partOf ?subj .
+									?subj VCARD:adr ?uriDirection .
+									?uriRoomBed ACCO:partOf ?subj .
 
-									?obj1 VCARD:street-address ?direccion .
-									?obj2 ACCO:numberOfRooms ?uriValue .
-									?uriValue GR:hasValue ?numHabitaciones .
+									?uriDirection VCARD:street-address ?direccion .
+									?uriRoomBed ACCO:numberOfRooms ?uriRoom .
+									?uriRoom GR:hasValue ?numHabitaciones .
 									
-									?obj2 ACCO:bed ?uriBed .
+									?uriRoomBed ACCO:bed ?uriBed .
 									?uriBed ACCO:quantity ?numCamas .
 								}`
 					break
 				case "empresas":
 				case "restaurantes":
-					query = `PREFIX UMBEL: <http://umbel.org/umbel#> 
-							PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
+					query = `PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
 							PREFIX VCARD: <http://www.w3.org/2006/vcard/ns#> 
 							PREFIX GR: <http://purl.org/goodrelations/v1#>
 							SELECT ?direccion ?abre ?cierra
 							WHERE {
-								?subj  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/`+ruta+"/"+categoria+`>. 
 								?subj FOAF:depiction <`+parametro+`> .
 								?subj VCARD:adr ?obj1 .
 								?obj1 VCARD:street-address ?direccion .
@@ -84,10 +80,8 @@ ecolodApp.factory('modalService', ['queryService',
 							PREFIX TIME: <http://purl.org/NET/c4dm/timeline.owl#>
 							PREFIX RDFS: <http://www.w3.org/2000/01/rdf-schema#>
 							PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
-							PREFIX UMBEL: <http://umbel.org/umbel#>
 							SELECT ?fecha ?duracion ?lugar
-							WHERE {
-								?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/`+ruta+"/"+categoria+`>. 
+							WHERE { 
 								?sub FOAF:depiction <`+parametro+`> .
 								?sub EVENT:time ?obj1 .
 								?obj1 TIME:at ?fecha .

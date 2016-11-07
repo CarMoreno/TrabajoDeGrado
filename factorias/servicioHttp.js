@@ -63,8 +63,8 @@ ecolodApp.factory('queryService',
             
         }    
 
-        serviceQuery.getOne = function(query, scope_window) {
-            if (scope_window) {
+        serviceQuery.getOne = function(query, object) {
+            if (object) {
                 $http({
                     url: endpoint + escape(query),
                     headers: {'Content-type' : 'application/x-www-form-urlencoded',
@@ -74,15 +74,36 @@ ecolodApp.factory('queryService',
                 })
                 .success(function(data, status, headers, config) {
                     results = data.results.bindings
-                    scope_window.data = results
+                    object.data = results
+                    console.log(object.data)
                 })
                 .error(function(data, status, headers, config) {
                     console.log("Error ... "+status)
                 })
             }
+
         }
 
-        serviceQuery.getDataMarkers = function(scope_marker, query) {
+        serviceQuery.endpoint = function(query, object) {
+            if (object) {
+                $http({
+                    url: endpoint + escape(query),
+                    headers: {'Content-type' : 'application/x-www-form-urlencoded',
+                        'Accept' : 'application/sparql-results+json'},
+                    method: "GET",
+                    params: {format: "json"}    
+                })
+                .success(function(data, status, headers, config) {
+                    object.data = data.results.bindings
+                })
+                .error(function(data, status, headers, config) {
+                    console.log("Error ... "+status)
+                })
+            }
+
+        }
+
+        serviceQuery.getDataMarkers = function(scope_marker, query, categoria) {
             $http({
                 url: endpoint + escape(query),
                 headers: {'Content-type' : 'application/x-www-form-urlencoded',
@@ -91,15 +112,17 @@ ecolodApp.factory('queryService',
                 params: {format: "json"}    
             })
             .success(function(data, status, headers, config) {
-                var results = data.results.bindings // el string de la direccion
-                //console.log(results)
-                var geocoder = new google.maps.Geocoder()
-                geocoder.geocode({address: results[0].direccion.value}, function(data, status) {
-                    if(status == google.maps.GeocoderStatus.OK){
-                        scope_marker.lat = data[0].geometry.location.lat()
-                        scope_marker.lng = data[0].geometry.location.lng()
-                    }
-                })
+                if(categoria != "Fauna" || categoria != "Flora"){
+                    var results = data.results.bindings // el string de la direccion
+                    //console.log(results)
+                    var geocoder = new google.maps.Geocoder()
+                    geocoder.geocode({address: results[0].direccion.value}, function(data, status) {
+                        if(status == google.maps.GeocoderStatus.OK){
+                            scope_marker.lat = data[0].geometry.location.lat()
+                            scope_marker.lng = data[0].geometry.location.lng()
+                        }
+                    })
+                }
 
                                 
             })

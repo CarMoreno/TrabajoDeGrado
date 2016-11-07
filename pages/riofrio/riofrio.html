@@ -32,7 +32,7 @@
                     <div class="form-search input-group input-group-sm" 
                          ng-class="{ 'has-error' : form.busqueda.$invalid && !form.busqueda.$pristine }">
                         <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                        <input type="text" name="busqueda" class="form-control input-lg" placeholder="Empieza a escribir..."ng-model="search" required>
+                        <input type="text" name="busqueda" class="form-control input-lg" placeholder="Empieza a escribir..." ng-model="search" ng-pattern="/^[a-zA-Z0-9\s]*$/" required>
                     </div>
                   </form>
                   <!-- fin barra de busqueda -->
@@ -68,7 +68,7 @@
             <!-- /.box-header -->
              <div class="box-body div-frame">
               <div id="mapa">
-                <ng-map zoom="15" center="4.1566407, -76.2921399" style="height:100%">
+                <ng-map zoom="14" center="4.1566407, -76.2921399" style="height:100%">
                   <marker 
                     position="{{marker.lat}} , {{marker.lng}}"
                     icon = "{{marker.icon}}"

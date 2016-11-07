@@ -26,11 +26,12 @@
                             
                             <p class="referencias" ng-repeat="elem in array" ng-if="elem.pred.value.search('email') != -1 && elem.obj.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Email: </strong> <a href="mailto:{{elem.obj.value}}">{{elem.obj.value}}</a></p>
 
-                            <p ng-if="elem.pred.value.search('tel') != -1 && elem.obj.value.search('No disponible') == -1" ng-repeat="elem in array"><i class="fa fa-envira"></i> <strong>Teléfono: </strong>(+57) {{elem.obj.value}}</p>
+                            <p ng-if="elem.pred.value.search('tel') != -1 && elem.obj.value.search('0')" ng-repeat="elem in array"><i class="fa fa-envira"></i> <strong>Teléfono: </strong>(+57) {{elem.obj.value}}</p>
+
+                            <!-- <p ng-if="elem.pred.value.search('tel') != -1 && elem.obj.value.search('0') == -1" ng-repeat="elem in array"><i class="fa fa-envira"></i> <strong>Teléfono: </strong>(+57) {{elem.obj.value}}</p> -->
                         </div>
                         <!--OtrosDatos categorias-->
                         <div ng-repeat="array in otrosDatos">
-                            <!-- {{array}} -->
                              <p ng-repeat="elem in array" ng-if="elem.direccion.type.search('literal') != -1 && elem.direccion.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Dirección </strong> {{elem.direccion.value}}</p>
                              <p ng-repeat="elem in array" ng-if="elem.numHabitaciones.datatype.search('integer') != -1 && elem.numHabitaciones.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Número de habitaciones: </strong> {{elem.numHabitaciones.value}}</p>
                              <p ng-repeat="elem in array" ng-if="elem.numCamas.datatype.search('integer') != -1 && elem.numCamas.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Número de camas: </strong> {{elem.numCamas.value}}</p>

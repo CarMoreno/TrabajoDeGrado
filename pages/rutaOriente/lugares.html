@@ -22,7 +22,7 @@
                                   ng-if="lugares.pred.value.search('name') != -1">
           <a href="" class="product-title">{{lugares.obj.value}}</a>
               <span class="product-description" ng-repeat="lugares in cards"
-                                  ng-if="lugares.pred.value.search('email') != -1">
+                                  ng-if="lugares.pred.value.search('email') != -1 && lugares.obj.value != 'No disponible'">
                 {{lugares.obj.value}}
               </span>
         </div>

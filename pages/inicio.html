@@ -23,7 +23,7 @@
         <div class="form-search input-group input-group-lg" 
              ng-class="{ 'has-error' : formConsulta.busquedaQuery.$invalid && !formConsulta.busquedaQuery.$pristine }">
             <input type="text" name="busquedaQuery" class="form-control input-lg" placeholder="Empieza a escribir..." 
-                   ng-model="searchBox" required>
+              ng-model="searchBox" ng-pattern="/^[a-zá-úA-ZÁ-Ú\s]*$/" required>
               <span class="input-group-btn">
                 <button type="submit" class="btn btn-success btn-flat" ng-click="irAResultados(searchBox)" 
                         ng-disabled="formConsulta.$invalid">
@@ -31,7 +31,8 @@
                 </button>
               </span>
         </div>
-        <span ng-show="formConsulta.busquedaQuery.$invalid && !formConsulta.busquedaQuery.$pristine" class="help-block">El campo es requerido.</span>
+        <span ng-show="formConsulta.busquedaQuery.$error.pattern" >Sólo caracteres alfabéticos</span>
+        <!-- <span ng-show="formConsulta.busquedaQuery.$invalid && !formConsulta.busquedaQuery.$pristine" class="help-block">El campo es requerido.</span> -->
       </form>
       <br>
       <!--Cartas http://190.14.254.237/dataseteco/RutaDelMaiz/Corregimientos/ZonaUrbanaTulua/presentacionTulua720.mp4-->

@@ -17,16 +17,17 @@
 
     <!-- ================ (CONTENIDO DE LA PAGINA) ============================-->
     <section class="content">
-      <p class="text-justify">Cumpliendo con los estándares de la W3C para la publicación de <em>datasets</em> en la Web de Datos se dispone de un SPARQL Enpoint, una herramienta que permite realizar consultas SPARQL sobre un grafo de entrada compuesto por tripletas RDF. En este caso, el grafo de entrada es el <em>dataset</em> ecoturístico usado en toda la aplicación. <a href="http://190.14.254.238:3030/" target="_blank">Acceder al SPARQL Endpoint</a></p>
-      <p lass="text-justify">A continuación se muestran algunas consultas que pueden realizarse en el SPARQL Endpoint</p> 
+      <p class="text-justify">Cumpliendo con los estándares de la W3C para la publicación de <em>datasets</em> en la Web de Datos se dispone de un SPARQL Enpoint, una herramienta que permite realizar consultas SPARQL sobre un grafo de entrada compuesto por tripletas RDF. En este caso, el grafo de entrada es el <em>dataset</em> ecoturístico usado en toda la aplicación. A continuación se muestran algunas consultas que pueden realizarse en el SPARQL Endpoint</p>
       <div class="row">
         <div class="col-md-6">
-          <div class="box box-default collapsed-box box-solid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="box box-default box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Consulta 1</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
               <!-- /.box-tools -->
@@ -49,9 +50,9 @@ WHERE {
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-        </div>
-        <div class="col-md-6">
-          <div class="box box-default collapsed-box box-solid">
+            </div>
+            <div class="col-md-12">
+              <div class="box box-default collapsed-box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Consulta 2</h3>
 
@@ -63,116 +64,90 @@ WHERE {
             </div>
             <!-- /.box-header -->
             <div class="box-body" hljs hljs-no-escape>
-# Selecciona la hora en que abre y cierra los restaurantes de la Ruta del Maíz
-
+#Selecciona el numero de camas y habitaciones de un hotel en particular            
 PREFIX UMBEL: &lt;http://umbel.org/umbel#&gt;
 PREFIX FOAF: &lt;http://xmlns.com/foaf/0.1/&gt;
-PREFIX GR: &lt;http://purl.org/goodrelations/v1#&gt;
-PREFIX MZ: &lt;http://190.14.254.237/dataseteco/RutaDelMaiz/&gt;
-SELECT ?abre ?cierra
-WHERE {
-  ?sub  UMBEL:isRelatedTo MZ:Restaurantes. 
-  ?sub FOAF:depiction ?cualquier .
-  ?sub GR:hasOpeningHoursSpecification ?obj2 .
-  ?obj2 GR:opens ?abre .
-  ?obj2 GR:closes ?cierra .
-}            
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-            
-		<!-- /.col -->      
-      </div><!-- .row -style="bottom: 450px; left:590px;-->
-            <div class="row">
-        <div class="col-md-6">
-          <div class="box box-default box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Consulta 3</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
-              <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body" hljs hljs-no-escape>
-# Selecciona el numero de habitaciones, de camas y la 
-# direccion de todos los hoteles de la Ruta del Anillo 
-# Agricola.
-
-PREFIX UMBEL: &lt;http://umbel.org/umbel#&gt;
+PREFIX VCARD: &lt;http://www.w3.org/2006/vcard/ns#&gt; 
 PREFIX ACCO: &lt;http://purl.org/acco/ns#&gt;
-PREFIX FOAF: &lt;http://xmlns.com/foaf/0.1/&gt;
-PREFIX VCARD: &lt;http://www.w3.org/2006/vcard/ns#&gt;
-PREFIX GR: &lt;http://purl.org/goodrelations/v1#&gt;
-PREFIX AG: &lt;http://190.14.254.237/dataseteco/RutaDelAnilloAgricola/&gt;
-SELECT ?direccion ?numHabitaciones ?numCamas
-WHERE {
-  ?sub  UMBEL:isRelatedTo AG:Alojamientos. 
-  ?sub FOAF:depiction ?cualquier .
-  ?sub VCARD:adr ?obj1 .
-  ?obj1 VCARD:street-address ?direccion .
+PREFIX GR: &lt;http://purl.org/goodrelations/v1#&gt;  
+PREFIX MZ:  &lt;http://190.14.254.237/dataseteco/RutaDelMaiz/&gt;         
+SELECT ?numHabitaciones ?numCamas
+  WHERE {
+    ?sub  UMBEL:isRelatedTo MZ:Alojamientos. 
+    ?sub FOAF:depiction &lt;http://i.imgur.com/PZaVeSm.jpg&gt; .
+    ?sub VCARD:adr ?obj1 .
 
-  ?obj2 ACCO:partOf ?sub .
-  ?obj2 ACCO:numberOfRooms ?uriValue .
-  ?uriValue GR:hasValue ?numHabitaciones .
-
-  ?obj2 ACCO:bed ?uriBed .
-  ?uriBed ACCO:quantity ?numCamas .
-}
+    ?obj2 ACCO:partOf ?sub .
+    ?obj2 ACCO:numberOfRooms ?uriValue .
+    ?uriValue GR:hasValue ?numHabitaciones .
+    
+    ?obj2 ACCO:bed ?uriBed .
+    ?uriBed ACCO:quantity ?numCamas .
+  }
             </div>
             <!-- /.box-body -->
+          </div><!-- /.box -->
+            </div>
           </div>
-          <!-- /.box -->
         </div>
-        <div class="col-md-6">
-          <div class="box box-default box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Consulta 4</h3>
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-              </div>
-              <!-- /.box-tools -->
+        <div class="col-md-6">
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Escribe tu consulta SPARQL</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body" hljs hljs-no-escape>
-# Selecciona las direcciones de Alojamientos, Empresas y Restaurantes
-# de la Ruta del Maíz
-
-PREFIX UMBEL: &lt;http://umbel.org/umbel#&gt;
-PREFIX VCARD: &lt;http://www.w3.org/2006/vcard/ns#&gt;
-PREFIX MZ: &lt;http://190.14.254.237/dataseteco/RutaDelMaiz/&gt;
-SELECT DISTINCT ?direccion 
-WHERE {
-  {
-    ?sub  UMBEL:isRelatedTo MZ:Empresas. 
-    ?sub VCARD:adr ?obj1 .
-  }
-  UNION
-  {
-    ?sub  UMBEL:isRelatedTo MZ:Alojamientos. 
-    ?sub VCARD:adr ?obj1 .
-  }
-  UNION
-  {
-    ?sub  UMBEL:isRelatedTo MZ:Restaurantes. 
-    ?sub VCARD:adr ?obj1 .
-  }
-
-  ?obj1 VCARD:street-address ?direccion .
-}
+            <div class="box-body">
+              <form role="form" method="GET" name="formEndpoint">
+                <!-- textarea -->
+                <div class="form-group">
+                  <label>Consulta</label>
+                  <textarea class="form-control" rows="6" placeholder="SELECT ..." ng-model="queryText" required></textarea><br>
+                  <span class="input-group-btn center-block">
+                    <button type="submit" class="btn btn-success btn-flat btn-lg" ng-disabled="formEndpoint.$invalid" ng-click="consultarEndpoint(queryText)">
+                      Enviar <i class="fa fa-send"></i>
+                    </button>
+                  </span>
+                </div>
+              </form>
+              <!-- <div class="box" ng-show="resultado.data.length">
+                <div class="box-header">
+                  <h3 class="box-title">Resultados</h3>
+                </div>
+                <div class="box-body">
+                  <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                      <th>Rendering engine</th>
+                      <th>Browser</th>
+                      <th>Platform(s)</th>
+                      <th>Engine version</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="x in resultado.data">
+                      <td>{{x.direccion.value}}</td>
+                      <td>{{x.direccion.value}}</td>
+                      <td>{{x.direccion.value}}</td>
+                      <td>{{x.direccion.value}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div> -->
+              <div class="box box-success" ng-repeat="array in resultado">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Resultados</h3>
+                </div>
+                <div ng-repeat="datos in array">
+                  {{datos}}  
+                </div>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
-          <!-- /.box -->
         </div>
-            
-		<!-- /.col -->      
+      
       </div><!-- .row -style="bottom: 450px; left:590px;-->
       <!-- <div class="row"> -->
     </section>

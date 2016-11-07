@@ -3,7 +3,6 @@ app.controller('rutaOrienteCtrl', ['$scope', '$route', '$http', '$uibModal', 'mo
     function($scope, $route, $http, $uibModal, modalService, queryService, mapService) 
     {
         $scope.ruta = $route;
-        $scope.map = { center: { latitude: 4.0744162, longitude: -76.2051463 }, zoom: 13 };
         $scope.marker = {}
         $scope.window = {}
         $scope.rutaCategorias = {'fauna':'pages/rutaOriente/fauna.html', 'flora':'pages/rutaOriente/flora.html', 'alojamientos':'pages/rutaOriente/alojamientos.html',

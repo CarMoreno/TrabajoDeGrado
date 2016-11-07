@@ -31,7 +31,7 @@
           <ol>
             <li>Espere un poco y realice la consulta nuevamente</li>
             <li>Especifique otro criterio de búsqueda</li>
-            <li>¿Nos estamos perdiendo algo en nuestros resultados?. Use <a href="#">SPARQL Endpoint</a> para añadir la información faltante</li>
+            <!-- <li>¿Nos estamos perdiendo algo en nuestros resultados?. Use <a href="/">SPARQL Endpoint</a> para añadir la información faltante</li> -->
           </ol>
         </p>
         <p class="m-b-0">Gracias por usar nuestra plataforma</p>
@@ -39,7 +39,7 @@
       </div>
       <!--Cartas-->
       <div class="row"  >
-        <div class="col-md-4 col-sm-3" dir-paginate="cards in datos | itemsPerPage:3">
+        <div class="col-md-4 col-sm-6 col-lg-4" dir-paginate="cards in datos | itemsPerPage:3">
           <div class='report-module'>
             <div class='thumbnail' ng-repeat="resultado in cards"
                                    ng-if="resultado.obj.value.search('imgur') != -1">

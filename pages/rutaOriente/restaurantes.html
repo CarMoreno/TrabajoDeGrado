@@ -11,6 +11,7 @@
     </div>
   </div>
   <div class="box-body">
+        <!-- {{categorias.restaurantes}} -->
     <ul class="products-list product-list-in-box" dir-paginate="cards in categorias.restaurantes | filter:search | itemsPerPage:3">
       <li class="item" ng-repeat="restaurantes in cards" ng-if="restaurantes.obj.value.search('imgur') != -1"
       ng-click="open(restaurantes.obj.value, 'Restaurantes', 'RutaVueltaAOriente')">
@@ -22,7 +23,7 @@
                                   ng-if="restaurantes.pred.value.search('name') != -1">
           <a href="" class="product-title">{{restaurantes.obj.value}}</a>
               <span class="product-description" ng-repeat="restaurantes in cards"
-                                  ng-if="restaurantes.pred.value.search('tel') != -1 && restaurantes.obj.value.search('No disponible') == -1">
+                                  ng-if="restaurantes.pred.value.search('tel') != -1 && restaurantes.obj.value.search('0')">
                 {{restaurantes.obj.value}}
               </span>
         </div>

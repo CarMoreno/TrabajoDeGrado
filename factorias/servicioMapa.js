@@ -9,25 +9,22 @@ ecolodApp.factory('mapService', ['queryService',
 
 		serviceMap.getDataMarkers = function(categoria, parametro, scope_marker, scope_window) {
 
-			if (parametro && (categoria == "Alojamientos" || categoria=="Restaurantes" || categoria=="Eventos" || categoria=="Empresas" || categoria=="Lugares")) {
+			if (parametro && (categoria != "Fauna" || categoria != "Flora")) {
 				console.log(categoria)
 				if (categoria == "Eventos") {
-					query = `PREFIX UMBEL: <http://umbel.org/umbel#>
-							PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
+					query = `PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
 							PREFIX EVENT: <http://purl.org/NET/c4dm/event.owl#>
 							PREFIX RDFS: <http://www.w3.org/2000/01/rdf-schema#>
-
-							SELECT ?lugar
+							SELECT ?direccion ?nombre
 								WHERE {
+									?sub RDFS:label ?nombre .
 									?sub FOAF:depiction <`+parametro+`> .
-									?sub EVENT:place ?obj .
-									?obj RDFS:label ?lugar .
-								}`
-					console.log(query)			
+									?sub EVENT:place ?uriPlace .
+									?uriPlace RDFS:label ?direccion .
+								}`		
 				}
 				else {
-					query = `PREFIX UMBEL: <http://umbel.org/umbel#>
-		                    PREFIX VCARD: <http://www.w3.org/2006/vcard/ns#>
+					query = `PREFIX VCARD: <http://www.w3.org/2006/vcard/ns#>
 		                    PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
 		                    PREFIX GR: <http://purl.org/goodrelations/v1#>
 		                    SELECT ?direccion ?nombre 
@@ -37,12 +34,12 @@ ecolodApp.factory('mapService', ['queryService',
 		                            {?sub FOAF:name ?nombre .}
 		                             
 		                            ?sub FOAF:depiction <`+parametro+`> .
-		                            ?sub VCARD:adr ?obj1 .
-		                            ?obj1 VCARD:street-address ?direccion .
+		                            ?sub VCARD:adr ?uriAddress .
+		                            ?uriAddress VCARD:street-address ?direccion .
 		                        }`
 					
 				}        
-				queryService.getDataMarkers(scope_marker, query)
+				queryService.getDataMarkers(scope_marker, query, categoria)
 				serviceMap.getOptionsMarker(scope_marker, categoria)
 				queryService.getOne(query, scope_window)
 			}
@@ -61,6 +58,8 @@ ecolodApp.factory('mapService', ['queryService',
 					break
 				case "lugares":
 					scope_marker.icon = 'dist/img/lugares.png'
+				case "eventos":
+					scope_marker.icon = 'dist/img/eventos.png'	
 			}
 		}
 
@@ -73,7 +72,7 @@ ecolodApp.factory('mapService', ['queryService',
 
           		case "rutaoriente":
           			scope_marker.origin = {lat: 4.0727237, lng:-76.191922}//la 14
-          			scope_marker.destination = {lat:4.0500313, lng: -76.1554248}//el picacho
+          			scope_marker.destination = {lat:4.0427483, lng:-76.0966857}//el picacho
           			break
 
           		case "jardin":
@@ -85,8 +84,7 @@ ecolodApp.factory('mapService', ['queryService',
           			console.log("Hola")
           			scope_marker.origin = {lat: 4.0957791, lng: -76.2091337}//confamdi chiminagos
           			scope_marker.destination = {lat: 4.1522723, lng: -76.2547296}//bocas de tulua
-          			break		
-          				
+          			break				
 			}
 		}
 		return serviceMap
