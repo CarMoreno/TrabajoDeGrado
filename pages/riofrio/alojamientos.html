@@ -1,6 +1,20 @@
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title">Alojamientos</h3>
+    <div class="row">
+      <div class="col-md-3"><h3 class="box-title">Alojamientos</h3></div>
+          <!-- barra de busqueda -->
+      <div class="col-md-9" ng-show="categorias.alojamientos.length">
+        <form name="form" novalidate>
+          <div class="form-search input-group input-group-sm" 
+               ng-class="{ 'has-error' : form.busqueda.$invalid && !form.busqueda.$pristine }">
+              <span class="input-group-addon"><i class="fa fa-search"></i></span>
+              <input type="text" name="busqueda" class="form-control input-lg" placeholder="Empieza a buscar alojamientos..." ng-model="search" ng-pattern="/^[a-zá-úA-ZÁ-Ú\s]*$/" required>
+          </div>
+          <span ng-show="formConsulta.busquedaQuery.$error.pattern" >Sólo caracteres alfabéticos</span>
+        </form>       
+      </div>
+      <!-- fin barra de busqueda -->
+    </div>
   </div>
   <div class="box box-solid" ng-hide="categorias.alojamientos.length">
     <div class="box-body">
@@ -11,7 +25,7 @@
     </div>
   </div>
   <div class="box-body">
-    <ul class="products-list product-list-in-box" dir-paginate="cards in categorias.alojamientos | filter:search | itemsPerPage:3">
+    <ul class="products-list product-list-in-box" dir-paginate="cards in categoriasFiltered=(categorias.alojamientos | filter:search) | itemsPerPage:3">
       <li class="item" ng-repeat="alojamientos in cards" ng-if="alojamientos.obj.value.search('imgur') != -1"
       ng-click="open(alojamientos.obj.value, 'Alojamientos', 'Riofrio')">
         <div class="product-img" ng-repeat="alojamientos in cards"
@@ -31,7 +45,8 @@
   </div>
   <!-- /.box-body -->
   <div class="box-footer text-center">
-    <!-- <a href="javascript:void(0)" class="uppercase">Ver todos</a> -->
+    <p ng-if="categoriasFiltered.length > 1" class="text-muted">Se encontraron {{categoriasFiltered.length}} resultados</p>
+    <p ng-if="categoriasFiltered.length == 1" class="text-muted">Se encontró {{categoriasFiltered.length}} resultado</p>
     <dir-pagination-controls
                max-size="3"
                direction-links="true">

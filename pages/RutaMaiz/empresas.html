@@ -1,6 +1,18 @@
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title">Empresas</h3>
+    <div class="row">
+      <div class="col-md-3"><h3 class="box-title">Empresas</h3></div>
+      <div class="col-md-9" ng-show="categorias.empresas.length">
+        <form name="form" novalidate>
+          <div class="form-search input-group input-group-sm" 
+               ng-class="{ 'has-error' : form.busqueda.$invalid && !form.busqueda.$pristine }">
+              <span class="input-group-addon"><i class="fa fa-search"></i></span>
+              <input type="text" name="busqueda" class="form-control input-lg" placeholder="Empieza a buscar empresas..." ng-model="search" ng-pattern="/^[a-zá-úA-ZÁ-Ú\s]*$/" required>
+          </div>
+          <span ng-show="formConsulta.busquedaQuery.$error.pattern" >Sólo caracteres alfabéticos</span>
+        </form>       
+      </div>
+    </div>
   </div>
   <div class="box box-solid" ng-hide="categorias.empresas.length">
     <div class="box-body">
@@ -11,7 +23,7 @@
     </div>
   </div>
   <div class="box-body">
-    <ul class="products-list product-list-in-box" dir-paginate="cards in categorias.empresas | filter:search | itemsPerPage:3">
+    <ul class="products-list product-list-in-box" dir-paginate="cards in categoriasFiltered = (categorias.empresas | filter:search) | itemsPerPage:3">
       <li class="item" ng-repeat="empresas in cards" ng-if="empresas.obj.value.search('imgur') != -1" ng-click = "open(empresas.obj.value, 'Empresas', 'RutaDelMaiz')" >
         <div class="product-img" ng-repeat="empresas in cards"
                                    ng-if="empresas.pred.value.search('depiction') != -1">
@@ -29,7 +41,9 @@
     </ul>
   </div>
   <!-- /.box-body -->
-  <div class="box-footer text-center" ng-if="categorias.empresas.length > 0">
+  <div class="box-footer text-center">
+    <p ng-if="categoriasFiltered.length > 1" class="text-muted">Se encontraron {{categoriasFiltered.length}} resultados</p>
+    <p ng-if="categoriasFiltered.length == 1" class="text-muted">Se encontró {{categoriasFiltered.length}} resultado</p>
     <dir-pagination-controls
                max-size="3"
                direction-links="true">

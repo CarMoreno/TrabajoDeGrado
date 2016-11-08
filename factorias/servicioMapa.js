@@ -10,7 +10,6 @@ ecolodApp.factory('mapService', ['queryService',
 		serviceMap.getDataMarkers = function(categoria, parametro, scope_marker, scope_window) {
 
 			if (parametro && (categoria != "Fauna" || categoria != "Flora")) {
-				console.log(categoria)
 				if (categoria == "Eventos") {
 					query = `PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
 							PREFIX EVENT: <http://purl.org/NET/c4dm/event.owl#>

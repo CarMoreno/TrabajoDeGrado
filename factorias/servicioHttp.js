@@ -39,6 +39,7 @@ ecolodApp.factory('queryService',
             else if (tabName == "Alojamientos") {
                 $scope.categorias.alojamientos = []
                 serviceQuery.getResults(query, $scope.categorias.alojamientos);
+                //$scope.search = $scope.categorias.alojamientos.length
             }
 
             else if (tabName == "Restaurantes") {

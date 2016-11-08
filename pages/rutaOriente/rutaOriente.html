@@ -24,20 +24,7 @@
           <!-- box -->
           <div class="box box-success box-solid arrastrar"> 
             <div class="box-header with-border">
-              <div class="row">
-                <div class="col-md-3"><h3 class="box-title">Categorías</h3></div>
-                <div class="col-md-8">
-                  <!-- barra de busqueda -->
-                  <form name="form" novalidate">
-                    <div class="form-search input-group input-group-sm" 
-                         ng-class="{ 'has-error' : form.busqueda.$invalid && !form.busqueda.$pristine }">
-                        <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                        <input type="text" name="busqueda" class="form-control input-lg" placeholder="Empieza a escribir..." ng-model="search" ng-pattern="/^[a-zA-Z0-9\s]*$/" required>
-                    </div>
-                  </form>
-                  <!-- fin barra de busqueda -->
-                </div>
-              </div>
+                <h3 class="box-title">Categorías</h3>
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -45,7 +32,7 @@
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-          <div class="box-body text-justify" ng-control="rutaOrienteCtrl">
+          <div class="box-body text-justify">
             <ng-include src="'pages/categorias.html'"></ng-include>
           </div>
             <!-- /.box-body -->
@@ -75,14 +62,26 @@
                     on-click="map.showInfoWindow(event, 'bar')"
                   >
                   </marker>
-                  <directions 
-                    travel-mode="DRIVING"
-                    origin="{{marker.origin}}"
-                    destination="{{marker.destination}}">
-                  </directions>
 
                   <info-window id="bar" max-width="200" template="'pages/infowindow.html'">
                   </info-window>
+
+                  <directions 
+                    travel-mode="DRIVING"
+                    origin="{{marker.origin}}"
+                    destination="{{marker.destination}}"
+                    suppress-markers="true">
+                  </directions>
+
+                  <custom-marker id="start"
+                    position="4.0727237, -76.191922">
+                    <div> Inicio </div>
+                  </custom-marker>
+
+                  <custom-marker id="end"
+                    position="4.0427483, -76.0966857">
+                    <div> Llegada </div>
+                  </custom-marker>
                 </ng-map> 
               </div>
             </div>
