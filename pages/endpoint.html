@@ -7,7 +7,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Sparql Endpoint<!--parque de la guadua hasta campoalegre-->
+        Sparql Endpoint
+        <small>Si sabes el lenguaje de consulta SAPRQL, entonces esta sección es para ti</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#/"><i class="fa fa-home"></i>Inicio</a></li>
@@ -17,7 +18,7 @@
 
     <!-- ================ (CONTENIDO DE LA PAGINA) ============================-->
     <section class="content">
-      <p class="text-justify">Cumpliendo con los estándares de la W3C para la publicación de <em>datasets</em> en la Web de Datos se dispone de un SPARQL Enpoint, una herramienta que permite realizar consultas SPARQL sobre un grafo de entrada compuesto por tripletas RDF. En este caso, el grafo de entrada es el <em>dataset</em> ecoturístico usado en toda la aplicación. A continuación se muestran algunas consultas que pueden realizarse en el SPARQL Endpoint</p>
+      <p class="text-justify">Cumpliendo con los estándares de la W3C para la publicación de <em>datasets</em> en la Web de Datos se dispone de un SPARQL Enpoint, en esta sección encontrará una herramienta que permite realizar consultas SPARQL sobre un grafo de entrada compuesto por tripletas RDF. En este caso, el grafo de entrada es el <em>dataset</em> ecoturístico usado en toda la aplicación. A continuación se muestran algunas consultas que pueden realizarse en el SPARQL Endpoint.</p>
       <div class="row">
         <div class="col-md-6">
           <div class="row">
@@ -34,18 +35,16 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body" hljs hljs-no-escape>
-# Selecciona una direccion de las empresas
-# de la Ruta del Maíz.
+# Selecciona la direccion de un evento
 
-PREFIX UMBEL: &lt;http://umbel.org/umbel#&gt;
-PREFIX VCARD: &lt;http://www.w3.org/2006/vcard/ns#&gt;
-PREFIX MZ: &lt;http://190.14.254.237/dataseteco/RutaDelMaiz/&gt;       
-SELECT ?direccion 
-WHERE {
-  ?sub  UMBEL:isRelatedTo MZ:Empresas. 
-  ?sub VCARD:adr ?cualquiera .
-  ?cualquiera VCARD:street-address ?direccion .
-}
+PREFIX FOAF: &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX EVENT: &lt;http://purl.org/NET/c4dm/event.owl#&gt; 
+PREFIX RDFS: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;       
+SELECT ?lugar
+  WHERE { 
+    ?sub FOAF:depiction &lt;http://i.imgur.com/f7hcZMr.jpg&gt; .
+    ?sub EVENT:place ?obj .
+    ?obj RDFS:label ?lugar .}
             </div>
             <!-- /.box-body -->
           </div>
@@ -65,15 +64,13 @@ WHERE {
             <!-- /.box-header -->
             <div class="box-body" hljs hljs-no-escape>
 #Selecciona el numero de camas y habitaciones de un hotel en particular            
-PREFIX UMBEL: &lt;http://umbel.org/umbel#&gt;
 PREFIX FOAF: &lt;http://xmlns.com/foaf/0.1/&gt;
 PREFIX VCARD: &lt;http://www.w3.org/2006/vcard/ns#&gt; 
 PREFIX ACCO: &lt;http://purl.org/acco/ns#&gt;
 PREFIX GR: &lt;http://purl.org/goodrelations/v1#&gt;  
-PREFIX MZ:  &lt;http://190.14.254.237/dataseteco/RutaDelMaiz/&gt;         
+
 SELECT ?numHabitaciones ?numCamas
   WHERE {
-    ?sub  UMBEL:isRelatedTo MZ:Alojamientos. 
     ?sub FOAF:depiction &lt;http://i.imgur.com/PZaVeSm.jpg&gt; .
     ?sub VCARD:adr ?obj1 .
 

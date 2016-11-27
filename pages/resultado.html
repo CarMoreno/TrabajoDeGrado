@@ -19,26 +19,35 @@
     </section>
 
     <!-- ===================CONTENIDO ===================-->
-    <section class="content">
+    <section class="content" >
       <p>Se encontraron {{datos.length}} resultados</p>
-      <div class="alert alert-success" ng-if="datos.length == 0">
-      <br><br><br><br><br>
-        <h2 class="alert-heading">
-          <i class="fa fa-frown-o"></i> Oops! No hay resultados
-        </h2>
-        <p align="justify">
-          Un par de cosas que pueden ayudar:
-          <ol>
-            <li>Espere un poco y realice la consulta nuevamente</li>
-            <li>Especifique otro criterio de búsqueda</li>
-            <!-- <li>¿Nos estamos perdiendo algo en nuestros resultados?. Use <a href="/">SPARQL Endpoint</a> para añadir la información faltante</li> -->
-          </ol>
-        </p>
-        <p class="m-b-0">Gracias por usar nuestra plataforma</p>
-        <br><br><br><br><br><br>
+        <br>
+        <br>
+      <div class="row" ng-hide="datos.length">
+        <div class="col-md-12">
+          <div class="box box-solid box-success">
+            <div class="box-body">
+              Cargando resultados...
+            </div>
+            <div class="overlay">
+              <i class="fa fa-refresh fa-spin"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+          <div class="box box-solid box-info">
+            <div class="box-body">
+              <h4>Si no obtuvo resultados intente lo siguiente... <i class="fa fa-smile-o"></i></h4>
+              <ul>
+                <li>Espere un poco y <a href="#/">realice la consulta nuevamente</a></li>
+                <li>Especifique otro criterio de búsqueda</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
       <!--Cartas-->
-      <div class="row"  >
+      <div class="row">
         <div class="col-md-4 col-sm-6 col-lg-4" dir-paginate="cards in datos | itemsPerPage:3">
           <div class='report-module'>
             <div class='thumbnail' ng-repeat="resultado in cards"
@@ -92,6 +101,14 @@
       </div>
       <!--./Cartas-->
     </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <!--=================== /.CONTENIDO ============= -->
   </div>
   <!-- /.content-wrapper -->

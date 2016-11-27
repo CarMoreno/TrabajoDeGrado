@@ -5,7 +5,7 @@
   <!-- Left side column. contains the logo and sidebar -->
   <ng-include src="'pages/aside.html'"></ng-include>
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper" ng-controller="tabsCtrl">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -14,13 +14,14 @@
       <ol class="breadcrumb">
         <li><a href="#/"><i class="fa fa-home"></i> Inicio</a></li>
         <li class="active">Ruta Anillo Agrícola</li>
+        <li class="active">{{categoria}}</li>
       </ol>
     </section>
 
     <!-- ================ (CONTENIDO DE LA PAGINA) ============================-->
     <section class="content">
       <div class="row">
-        <div class="col-md-5 col-lg-5 col-sm-5" ng-controller="tabsCtrl">
+        <div class="col-md-5 col-lg-5 col-sm-5">
           <!-- box -->
           <div class="box box-success box-solid arrastrar"> 
             <div class="box-header with-border">

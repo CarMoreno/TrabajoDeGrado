@@ -19,7 +19,6 @@ ecolodApp.factory('modalService', ['queryService',
 					PREFIX FOAF: <http://xmlns.com/foaf/0.1/> 
 					SELECT ?sub 
 						WHERE {
-							?sub  UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/`+ruta+"/"+categoria+`>. 
 							?sub FOAF:depiction <`+parametro+`> .
 						}`											
 			queryService.getResults(query, $scope.dato)
@@ -97,7 +96,6 @@ ecolodApp.factory('modalService', ['queryService',
 							PREFIX VCARD: <http://www.w3.org/2006/vcard/ns#> 
 							SELECT ?direccion 
 							WHERE {
-								?sub UMBEL:isRelatedTo <http://190.14.254.237/dataseteco/`+ruta+"/"+categoria+`>.
 								?sub FOAF:depiction <`+parametro+`>. 
 								?sub VCARD:adr ?obj1 .
 								?obj1 VCARD:street-address ?direccion .

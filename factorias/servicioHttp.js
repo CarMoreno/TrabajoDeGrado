@@ -76,7 +76,6 @@ ecolodApp.factory('queryService',
                 .success(function(data, status, headers, config) {
                     results = data.results.bindings
                     object.data = results
-                    console.log(object.data)
                 })
                 .error(function(data, status, headers, config) {
                     console.log("Error ... "+status)
@@ -115,7 +114,6 @@ ecolodApp.factory('queryService',
             .success(function(data, status, headers, config) {
                 if(categoria != "Fauna" || categoria != "Flora"){
                     var results = data.results.bindings // el string de la direccion
-                    //console.log(results)
                     var geocoder = new google.maps.Geocoder()
                     geocoder.geocode({address: results[0].direccion.value}, function(data, status) {
                         if(status == google.maps.GeocoderStatus.OK){
@@ -155,11 +153,8 @@ ecolodApp.factory('queryService',
             })
 
             .success(function(data, status, headers, config) 
-            {   console.log(data)
-                results = data.results.bindings;
+            {   results = data.results.bindings;
                 querys = [];
-                //console.log(results)
-                //$scope.datos = [];
                 for(i=0; i<results.length; i++)
                 {
                     querys[i] = "SELECT ?sub ?pred ?obj WHERE {<"+ results[i].sub.value +"> ?pred  ?obj.}"
@@ -181,7 +176,6 @@ ecolodApp.factory('queryService',
                         {
                             resuls = data.results.bindings;
                             array.push(resuls)
-                            //console.log(array.length);
                         })
                 }
 

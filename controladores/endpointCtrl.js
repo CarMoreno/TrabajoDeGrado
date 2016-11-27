@@ -6,10 +6,6 @@ ecolodApp.controller('endpointCtrl', ['$scope', '$route', 'queryService',
     	$scope.consultarEndpoint = function(query) {
     		queryService.endpoint(query, $scope.resultado)
     	}
-
-    	// function getKeys(object) {
-    	// 	console.log(object)
-    	// }
     }
 
 ]);

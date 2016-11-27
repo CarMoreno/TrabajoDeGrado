@@ -35,12 +35,19 @@
                              <p ng-repeat="elem in array" ng-if="elem.direccion.type.search('literal') != -1 && elem.direccion.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Dirección </strong> {{elem.direccion.value}}</p>
                              <p ng-repeat="elem in array" ng-if="elem.numHabitaciones.datatype.search('integer') != -1 && elem.numHabitaciones.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Número de habitaciones: </strong> {{elem.numHabitaciones.value}}</p>
                              <p ng-repeat="elem in array" ng-if="elem.numCamas.datatype.search('integer') != -1 && elem.numCamas.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Número de camas: </strong> {{elem.numCamas.value}}</p>
-                             <p ng-repeat="elem in array" ng-if="elem.abre.datatype.search('time') != -1 && elem.abre.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Abre a las:</strong> {{elem.abre.value}}</p>
-                             <p ng-repeat="elem in array" ng-if="elem.cierra.datatype.search('time') != -1 && elem.cierra.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Cierra a las:</strong> {{elem.cierra.value}}</p>
+                             <p ng-repeat="elem in array" ng-if="(elem.abre.datatype.search('time') != -1 && elem.abre.value.search('No disponible') == -1) && (elem.cierra.datatype.search('time') != -1 && elem.cierra.value.search('No disponible') == -1)"><i class="fa fa-envira"></i> <strong>Horario de atención:</strong> de {{elem.abre.value}} a {{elem.cierra.value}}</p>
                              
-                             <p ng-repeat="elem in array" ng-if="elem.fecha.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Fecha:</strong> {{elem.fecha.value}}</p>
+<!-- 
+                             <p ng-repeat="elem in array" ng-if="(elem.abre.datatype.search('time') != -1 && elem.abre.value.search('No disponible') == -1) && (elem.cierra.datatype.search('time') != -1 && elem.cierra.value.search('No disponible') == -1)"><i class="fa fa-envira"></i>
+                                Con filtros <strong>{{elem.abre.value | asDate | date : "h:mma"}}</strong> a <strong>{{elem.cierra.value | asDate | date : "h:mma"}}</strong>
+                             </p>    -->
+                             
+                             
+                             <!-- <p ng-repeat="elem in array" ng-if="elem.cierra.datatype.search('time') != -1 && elem.cierra.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Cierra a las:</strong> {{elem.cierra.value}}</p> -->
+                             
+                             <p ng-non-bindable ng-repeat="elem in array" ng-if="elem.fecha.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Fecha:</strong> {{elem.fecha.value | moment: 'format': 'lll'}}</p>
                              <p ng-repeat="elem in array" ng-if="elem.lugar.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Lugar:</strong> {{elem.lugar.value}}</p>
-                             <p ng-repeat="elem in array" ng-if="elem.duracion.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Duración del evento:</strong> {{elem.duracion.value}}</p>
+                             <p ng-repeat="elem in array" ng-if="elem.duracion.value.search('No disponible') == -1"><i class="fa fa-envira"></i> <strong>Duración del evento:</strong> {{elem.duracion.value | duration}} día(s)</p>
                         </div>
                     </div>
                 </div>

@@ -61,6 +61,11 @@ ecolodApp.config(function($routeProvider) {
             controller  : 'endpointCtrl', 
             paginaActiva: '/terminos'
         })
+        .when('/referencias', {
+            templateUrl : 'pages/referencias.html',
+            controller  : 'referenciasCtrl', 
+            paginaActiva: '/referencias'
+        })
         .otherwise({
             redirectTo:'/'
         });

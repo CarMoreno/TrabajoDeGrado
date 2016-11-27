@@ -13,6 +13,7 @@ ecolodApp.controller('resultadoCtrl', ['$scope', '$route', 'queryService',
             PREFIX FOAF: <http://xmlns.com/foaf/0.1/>
             PREFIX WILDLIFE: <http://purl.org/ontology/wo/>
             PREFIX RDFS: <http://www.w3.org/2000/01/rdf-schema#>
+            PREFIX VCARD: <http://www.w3.org/2006/vcard/ns#>
             SELECT ?sub 
                 WHERE {
                     {?sub GR:name ?obj .}
@@ -22,6 +23,8 @@ ecolodApp.controller('resultadoCtrl', ['$scope', '$route', 'queryService',
                     {?sub WILDLIFE:commonName ?obj .}
                     UNION 
                     {?sub FOAF:name ?obj .}
+                    UNION
+                    {?sub VCARD:category ?obj .}
 
                     FILTER(regex(str(?obj), '`+busqueda+`'))
                 }`
